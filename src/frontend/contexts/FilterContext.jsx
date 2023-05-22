@@ -1,9 +1,8 @@
-import { createContext } from "react";
+import { createContext, useContext, useReducer } from "react";
+import { GiftContext } from "./GiftContext";
 
 export const FilterContext = createContext();
 
 const FilterProvider = ({ children }) => {
-  // const {}
-
   return <FilterContext.Provider>{children}</FilterContext.Provider>;
 };

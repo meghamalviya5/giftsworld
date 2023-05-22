@@ -1,0 +1,40 @@
+.filter-gifts {
+  display: flex;
+}
+
+.gifts-show {
+  padding: 1rem 3rem;
+}
+
+.gift-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.gift-list-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 1rem 0.5rem;
+  /* align-items: center; */
+  width: 15rem;
+  height: 25rem;
+}
+
+.gift-details {
+  /* display: flex; */
+  flex-direction: column;
+  padding: 1rem 1rem;
+}
+
+.gift-image {
+  width: 15rem;
+  height: 15rem;
+}
+
+.card-btn {
+  padding: 0.6rem;
+  font: 1rem;
+  border: 5px sold blueviolet;
+}
