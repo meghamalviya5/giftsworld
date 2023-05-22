@@ -14,6 +14,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/api/category/:categoryId" element={<GiftList />} />
+          {/* <Route path="/api/category/:categoryId" element={<GiftDetails />} /> */}
+
           <Route path="/mockman" element={<Mockman />} />
         </Routes>
       </header>

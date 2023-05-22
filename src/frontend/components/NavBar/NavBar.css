@@ -6,7 +6,7 @@
 }
 
 .nav-item {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   align-self: center;
 }
 
@@ -20,6 +20,6 @@
 }
 
 .nav-login-item {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   margin: 0px 1rem;
 }

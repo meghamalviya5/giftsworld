@@ -8,6 +8,7 @@ const Home = () => {
   const { categories, errorOnHome, isLoading, arrivalAndTrending } =
     useContext(CategoryContext);
   //const topCategories = getTopCategories()
+
   return isLoading ? (
     <h2>Loading..</h2>
   ) : errorOnHome ? (
@@ -30,7 +31,7 @@ const Home = () => {
                   src={filteredCaterory.image}
                   alt=""
                 />
-                {filteredCaterory.categoryName}
+                {filteredCaterory.displayName}
               </div>
             </Link>
           ))}
@@ -55,7 +56,7 @@ const Home = () => {
                   src={filteredCaterory.image}
                   alt=""
                 />
-                {filteredCaterory.categoryName}
+                {filteredCaterory.displayName}
               </div>
             </Link>
           ))}

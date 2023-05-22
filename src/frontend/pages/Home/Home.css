@@ -6,8 +6,10 @@
 .category-card {
   width: 10rem;
   height: 10rem;
-  border: 1px solid green;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid green; */
+  align-items: center;
 }
 
 .category-img {

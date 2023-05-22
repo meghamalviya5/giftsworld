@@ -1,15 +1,20 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Filters.css";
+import { CategoryContext } from "../../contexts/CategoryContext";
 import { GiftContext } from "../../contexts/GiftContext";
 
 const Filters = () => {
-  const { setPriceRange } = useContext(GiftContext);
+  const { categories } = useContext(CategoryContext);
+  const { setPriceRange, sortList, setRating, setCategory } =
+    useContext(GiftContext);
+  const ratings = [4, 3, 2, 1];
+
   return (
     <div className="filter-block">
       <div className="filter-header">
         <div>Filters</div>
-        {/* <Link onClick={dispatch({ type: PRICE_RANGE })}>Clear</Link> */}
+        <Link>Clear</Link>
       </div>
       <div className="price-selector">
         <label>Price </label>
@@ -22,43 +27,57 @@ const Filters = () => {
           width="17rem"
           onChange={(e) => setPriceRange(e.target.value)}
         />
+
         <label>Category</label>
-        <label htmlFor="gift-category-1">
-          <input type="checkbox" id="gift-category-1" />
-          Personalised
-        </label>
-        <label htmlFor="gift-category-2">
-          <input type="checkbox" id="gift-category-2" />
-          Flowers
-        </label>
-        <label htmlFor="gift-category-3">
-          <input type="checkbox" id="gift-category-3" />
-          Home Decor
-        </label>
-        <label htmlFor="gift-category-4">
-          <input type="checkbox" id="gift-category-4" />
-          Others
-        </label>
+        {categories.map((category) => (
+          <section key={category._id}>
+            <label htmlFor={category._id}>
+              <input
+                type="checkbox"
+                id={category._id}
+                value={category.categoryName}
+                onChange={(e) => setCategory(e)}
+              />
+              {category.displayName}
+            </label>
+          </section>
+        ))}
+
         <label>Rating</label>
-        <label htmlFor="four-plus">
-          <input type="radio" id="four-plus" name="rating" />4 Stars & above
-        </label>
-        <label htmlFor="three-plus">
-          <input type="radio" id="three-plus" name="rating" />3 Stars & above
-        </label>
-        <label htmlFor="two-plus">
-          <input type="radio" id="two-plus" name="rating" />2 Stars & above
-        </label>
-        <label htmlFor="one-plus">
-          <input type="radio" id="one-plus" name="rating" />1 Stars & above
-        </label>
+        {ratings.map((rating, idx) => (
+          <section key={idx}>
+            <label htmlFor={idx}>
+              <input
+                type="radio"
+                id={idx}
+                name="rating"
+                value={rating}
+                onChange={(e) => setRating(e.target.value)}
+              />
+              {rating} Stars & Up
+            </label>
+          </section>
+        ))}
+
         <label>Sort By</label>
         <label htmlFor="low-to-high">
-          <input type="radio" id="low-to-high" name="sort" />
+          <input
+            type="radio"
+            id="low-to-high"
+            name="sort"
+            value="low-to-high"
+            onChange={(e) => sortList(e.target.value)}
+          />
           Price-Low to High
         </label>
         <label htmlFor="high-to-low">
-          <input type="radio" id="high-to-low" name="sort" />
+          <input
+            type="radio"
+            id="high-to-low"
+            name="sort"
+            value="high-to-low"
+            onChange={(e) => sortList(e.target.value)}
+          />
           Price-High to Low
         </label>
       </div>

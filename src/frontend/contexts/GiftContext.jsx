@@ -16,7 +16,6 @@ const GiftProvider = ({ children }) => {
   const [gifts, setGifts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  // const [giftsByCategory, setGiftsByCategory] = useState([]);
   const { categories, arrivalAndTrending } = useContext(CategoryContext);
 
   const getGifts = async () => {
@@ -52,23 +51,31 @@ const GiftProvider = ({ children }) => {
       type: "SET_GIFTS_BY_CATEGORY",
       payload: { selectedCategoryGifts: byCategory },
     });
-    //setGiftsByCategory(byCategory);
   };
 
   const initialValue = {
     allGifts: gifts,
-    selectedGiftList: [],
-    giftList: [],
+    filteredGiftList: [],
+    originalGiftList: [],
+    giftsCategories: [],
   };
 
   const [state, dispatch] = useReducer(giftReducer, initialValue);
 
   const valueProp = {
     getGiftsByCategory,
-    selectedGiftList: state.selectedGiftList,
+    filteredGiftList: state.filteredGiftList,
     setPriceRange: (value) => {
-      console.log("set price range");
       dispatch({ type: "PRICE_RANGE_FILTER", payload: { rangeValue: value } });
+    },
+    sortList: (value) => {
+      dispatch({ type: "SORT_ITEMS", payload: { sortOrder: value } });
+    },
+    setRating: (value) => {
+      dispatch({ type: "RATING_FILTER", payload: { rating: value } });
+    },
+    setCategory: (value) => {
+      dispatch({ type: "CATEGORY_FILTER", payload: { event: value } });
     },
   };
 
