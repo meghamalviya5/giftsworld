@@ -4,6 +4,7 @@ export const giftReducer = (state, action) => {
     case "SET_GIFTS_BY_CATEGORY":
       return {
         ...state,
+        allGifts: action.payload.allGiftItems,
         filteredGiftList: action.payload.selectedCategoryGifts,
         originalGiftList: action.payload.selectedCategoryGifts,
       };
@@ -34,16 +35,39 @@ export const giftReducer = (state, action) => {
         );
       }
       return { ...state, filteredGiftList: sortedList };
-      break;
 
     case "CATEGORY_FILTER":
-      const category = action.payload.event.target.values;
-      const isChecked = action.payload.event.target.isChecked;
+      const category = action.payload.event.target.value;
+      const isChecked = action.payload.event.target.checked;
+      let updatedSelectedFilters = [...state.selectedFilters];
 
-      if(isChecked){
-        
+      if (isChecked) {
+        updatedSelectedFilters = [...state.selectedFilters, category];
+      } else {
+        updatedSelectedFilters = updatedSelectedFilters.filter(
+          (categoryFilter) => categoryFilter !== category
+        );
       }
-      break;
+
+      const filteredGiftListBySelectedCategory = action.payload.gifts.filter(
+        (gift) => {
+          if (updatedSelectedFilters !== 0) {
+            return updatedSelectedFilters.some((filterType) => {
+              if (action.payload.otherCategories.includes(filterType)) {
+                return gift[filterType];
+              } else {
+                return gift.categoryName === filterType;
+              }
+            });
+          }
+          return true;
+        }
+      );
+      return {
+        ...state,
+        filteredGiftList: filteredGiftListBySelectedCategory,
+        selectedFilters: updatedSelectedFilters,
+      };
 
     default:
       return { state };

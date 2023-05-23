@@ -49,7 +49,7 @@ const GiftProvider = ({ children }) => {
     }
     dispatch({
       type: "SET_GIFTS_BY_CATEGORY",
-      payload: { selectedCategoryGifts: byCategory },
+      payload: { allGiftItems: gifts, selectedCategoryGifts: byCategory },
     });
   };
 
@@ -58,13 +58,16 @@ const GiftProvider = ({ children }) => {
     filteredGiftList: [],
     originalGiftList: [],
     giftsCategories: [],
+    selectedFilters: [],
   };
+  console.log("gifts...in context - ", gifts);
 
   const [state, dispatch] = useReducer(giftReducer, initialValue);
 
   const valueProp = {
     getGiftsByCategory,
     filteredGiftList: state.filteredGiftList,
+    selectedFilters: state.selectedFilters,
     setPriceRange: (value) => {
       dispatch({ type: "PRICE_RANGE_FILTER", payload: { rangeValue: value } });
     },
@@ -75,7 +78,14 @@ const GiftProvider = ({ children }) => {
       dispatch({ type: "RATING_FILTER", payload: { rating: value } });
     },
     setCategory: (value) => {
-      dispatch({ type: "CATEGORY_FILTER", payload: { event: value } });
+      dispatch({
+        type: "CATEGORY_FILTER",
+        payload: {
+          event: value,
+          gifts: state.allGifts,
+          otherCategories: categories,
+        },
+      });
     },
   };
 
