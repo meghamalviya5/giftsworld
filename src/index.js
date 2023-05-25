@@ -8,6 +8,7 @@ import { makeServer } from "./server";
 import { CategoryContext } from "./frontend/contexts/CategoryContext";
 import CategoryProvider from "./frontend/contexts/CategoryContext";
 import GiftProvider from "./frontend/contexts/GiftContext";
+import CartProvider from "./frontend/contexts/CartContext";
 
 // Call make Server
 makeServer();
@@ -22,7 +23,9 @@ root.render(
     <BrowserRouter>
       <CategoryProvider>
         <GiftProvider>
-          <App />
+          <CartProvider>
+            <App />
+          </CartProvider>
         </GiftProvider>
       </CategoryProvider>
     </BrowserRouter>

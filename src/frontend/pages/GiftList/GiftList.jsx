@@ -3,10 +3,12 @@ import { useParams, Link } from "react-router-dom";
 import { GiftContext } from "../../contexts/GiftContext";
 import "./GiftList.css";
 import Filters from "../../components/Filters/Filters";
+import { CartContext } from "../../contexts/CartContext";
 
 const GiftList = () => {
   const { categoryId } = useParams();
   const { getGiftsByCategory, filteredGiftList } = useContext(GiftContext);
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     getGiftsByCategory(categoryId);
@@ -23,17 +25,14 @@ const GiftList = () => {
         <div className="gift-list">
           {filteredGiftList?.map((gift) => (
             <div key={gift._id} className="gift-list-item">
-              <Link to="/giftDetails">
+              <Link to={`/giftDetails/${gift._id}`}>
                 <img className="gift-image" src={gift.image} alt="" />
                 <div className="gift-details">
                   <p>{gift.name}</p>
                   <b>&#x20B9; {gift.price}</b>
                 </div>
               </Link>
-              <button
-                className="card-btn"
-                onClick={() => console.log("button clicked!")}
-              >
+              <button className="card-btn" onClick={(gift) => addToCart(gift)}>
                 Add To Cart
               </button>
             </div>

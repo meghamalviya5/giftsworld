@@ -9,6 +9,12 @@ export const giftReducer = (state, action) => {
         originalGiftList: action.payload.selectedCategoryGifts,
       };
 
+    case "CLEAR_FILTERS":
+      return {
+        ...state,
+        filteredGiftList: state.originalGiftList,
+      };
+
     case "PRICE_RANGE_FILTER":
       const filteredGift = state.originalGiftList.filter(
         (gift) => Number(gift.price) >= Number(action.payload.rangeValue)

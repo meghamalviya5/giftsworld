@@ -1,0 +1,8 @@
+.gift-detail-container {
+  display: flex;
+}
+
+.gift-detail-image {
+  width: 30rem;
+  height: 30rem;
+}

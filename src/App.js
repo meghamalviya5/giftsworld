@@ -5,6 +5,7 @@ import Mockman from "mockman-js";
 import NavBar from "./frontend/components/NavBar/NavBar";
 import Home from "./frontend/pages/Home/Home";
 import GiftList from "./frontend/pages/GiftList/GiftList";
+import GiftDetails from "./frontend/pages/GiftDetails/GiftDetails";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/api/category/:categoryId" element={<GiftList />} />
-          {/* <Route path="/api/category/:categoryId" element={<GiftDetails />} /> */}
+          <Route path="/giftDetails/:giftId" element={<GiftDetails />} />
 
           <Route path="/mockman" element={<Mockman />} />
         </Routes>
