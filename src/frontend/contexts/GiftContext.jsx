@@ -88,7 +88,6 @@ const GiftProvider = ({ children }) => {
       });
     },
   };
-  console.log("hihihi see ", state.filteredGiftList);
 
   return (
     <GiftContext.Provider value={valueProp}>{children}</GiftContext.Provider>

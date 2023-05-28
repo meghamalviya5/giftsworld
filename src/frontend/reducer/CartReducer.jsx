@@ -1,28 +1,4 @@
-import { addToCart, getCart } from "../utils/CartUtility";
-
 console.log("in cart reducer");
-
-// const addToCart = async (state, item) => {
-//   try {
-//     const data = { product: item };
-//     console.log("data json string : ", JSON.stringify(data));
-//     const response = await axios.post("/api/user/cart", data, {
-//       headers: {
-//         authorization: encodedToken,
-//       },
-//     });
-//     console.log("token :  ", encodedToken);
-//     console.log("response cart :  ", response.data.cart.length);
-//     dispatch({ type: ADD_TO_CART_SUCCESS, payload: response.data.cart });
-//     // return {
-//     //   ...state,
-//     //   cart: response.data.cart,
-//     //   cartItems: response.data.cart.length,
-//     // };
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 
 export const cartReducer = (state, action) => {
   switch (action.type) {
@@ -30,17 +6,44 @@ export const cartReducer = (state, action) => {
       return {
         ...state,
         cart: action.payload,
-        cartItems: action.payload.length,
       };
-    //return addToCart1(state, action.payload);
     case "GET_CART_SUCCESS":
       return { ...state, cart: action.payload };
-    //const cartItems = getCart(state);
-    //return { ...state, cart: { ...state.cart, ...cartItems } };
-    //return getCart(state);
-    case "REMOVE_FROM_CART":
-      break;
 
+    case "REMOVE_FROM_CART":
+      return {
+        ...state,
+        cart: action.payload,
+      };
+    case "CART_ITEM_QUANTITY_INCREMENT":
+      const updatedCart = state.cart.map((cartItem) => {
+        if (cartItem.name === action.payload) {
+          console.log(cartItem.name, "  ===cartItem.name");
+          console.log(action.payload, "  ===action.payload");
+          console.log(cartItem.qty, "  ===cartItem.qty");
+          ++cartItem.qty;
+          console.log(cartItem.qty, "  ===cartItem.qty");
+        }
+        return { ...cartItem };
+      });
+      return { ...state, cart: updatedCart };
+
+    case "CART_ITEM_QUANTITY_DECREMENT":
+      const updatedItem = state.cart.map((cartItem) => {
+        if (cartItem.name === action.payload && cartItem.qty > 1)
+          --cartItem.qty;
+        return cartItem;
+      });
+      return { ...state, cart: updatedItem };
+
+    case "UPDATE_CART_ITEMS":
+      const updatedCartItem = state.cart.map((cartItem) => {
+        console.log("action:: ", action.payload.event.target.value);
+        if (cartItem.name === action.payload && cartItem.qty >= 1)
+          cartItem.qty = Number(action.payload.event.target.value);
+        return cartItem;
+      });
+      return { ...state, cart: updatedCartItem };
     default:
       return state;
   }

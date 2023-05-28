@@ -27,7 +27,7 @@ const NavBar = () => {
           <Link to="wishlist">Wishlist({})</Link>
         </div>
         <div className="nav-login-item">
-          <Link to="cart">Cart({cart.length})</Link>
+          <Link to="/cart">Cart({cart.length})</Link>
         </div>
       </div>
     </div>

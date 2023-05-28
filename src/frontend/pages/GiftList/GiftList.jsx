@@ -8,7 +8,10 @@ import { CartContext } from "../../contexts/CartContext";
 const GiftList = () => {
   const { categoryId } = useParams();
   const { getGiftsByCategory, filteredGiftList } = useContext(GiftContext);
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, cart } = useContext(CartContext);
+
+  const findInCart = (itemId) =>
+    cart.find((cartItem) => cartItem._id === itemId);
 
   useEffect(() => {
     getGiftsByCategory(categoryId);
@@ -32,9 +35,15 @@ const GiftList = () => {
                   <b>&#x20B9; {gift.price}</b>
                 </div>
               </Link>
-              <button className="card-btn" onClick={() => addToCart(gift)}>
-                Add To Cart
-              </button>
+              {findInCart(gift._id) ? (
+                <Link to="/cart">
+                  <button className="card-btn">Go To Cart</button>
+                </Link>
+              ) : (
+                <button className="card-btn" onClick={() => addToCart(gift)}>
+                  Add To Cart
+                </button>
+              )}
             </div>
           ))}
         </div>

@@ -1,30 +1,45 @@
 import { useState, createContext } from "react";
-import axois from "axios";
+import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
+console.log("in AuthCOntext");
 const AuthProvider = ({ children }) => {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
     loginResponse: "",
+    isLoggedIn: false,
   });
 
   //call to login get api
   const loginUser = async () => {
     try {
-      console.log(userData, "  ...user");
       const url = "/api/auth/login";
       const data = {
         email: userData.email,
         password: userData.password,
       };
-      const response = await axois.post(url, data);
+      const response = await axios.post(url, data);
       localStorage.setItem("token", response.data.encodedToken);
-      console.log(response);
       if (response.status === 200) {
-        setUserData({ ...userData, loginResponse: "Login Successful" });
-        console.log(userData.loginResponse, "...loginResponse");
+        setUserData((prevUserData) => {
+          console.log("setting userdata data");
+          const setValue = {
+            ...prevUserData,
+            loginResponse: "Login Successful",
+            isLoggedIn: true,
+          };
+          console.log("setValue: ", setValue);
+          return setValue;
+        });
+
+        // setUserData({
+        //   ...userData,
+        //   loginResponse: "Login Successful",
+        //   isLoggedIn: true,
+        // });
       }
     } catch (error) {
       console.log(error);
@@ -34,26 +49,25 @@ const AuthProvider = ({ children }) => {
   //call to signup post api
   //const [isLoggedIn, setIsLoggedIn] = useState();
 
-  // const valueProp = {{ login: loginUser(), setEmail, setPassword }};
-
   //setEmail
   const setEmail = (event) => {
-    console.log("email value: ", userData.email);
     setUserData({ ...userData, email: event.target.value });
   };
 
   //setPassword
   const setPassword = (event) => {
-    console.log("password value: ", userData.password);
     setUserData({ ...userData, password: event.target.value });
   };
 
   return (
     <AuthContext.Provider
       value={{
-        login: () => loginUser(),
+        loginUser,
         setEmail,
+        userData,
+        setUserData,
         setPassword,
+        isLoggedIn: userData.isLoggedIn,
         loginResponse: userData.loginResponse,
       }}
     >
