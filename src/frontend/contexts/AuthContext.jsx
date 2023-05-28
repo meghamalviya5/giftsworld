@@ -1,6 +1,4 @@
 import { useState, createContext } from "react";
-import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
@@ -13,41 +11,7 @@ const AuthProvider = ({ children }) => {
     isLoggedIn: false,
   });
 
-  //call to login get api
-  const loginUser = async () => {
-    try {
-      const url = "/api/auth/login";
-      const data = {
-        email: userData.email,
-        password: userData.password,
-      };
-      const response = await axios.post(url, data);
-      localStorage.setItem("token", response.data.encodedToken);
-      if (response.status === 200) {
-        setUserData((prevUserData) => {
-          console.log("setting userdata data");
-          const setValue = {
-            ...prevUserData,
-            loginResponse: "Login Successful",
-            isLoggedIn: true,
-          };
-          console.log("setValue: ", setValue);
-          return setValue;
-        });
-
-        // setUserData({
-        //   ...userData,
-        //   loginResponse: "Login Successful",
-        //   isLoggedIn: true,
-        // });
-      }
-    } catch (error) {
-      console.log(error);
-      setUserData({ ...userData, loginResponse: "Error: Failed to Login" });
-    }
-  };
   //call to signup post api
-  //const [isLoggedIn, setIsLoggedIn] = useState();
 
   //setEmail
   const setEmail = (event) => {
@@ -62,7 +26,6 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        loginUser,
         setEmail,
         userData,
         setUserData,

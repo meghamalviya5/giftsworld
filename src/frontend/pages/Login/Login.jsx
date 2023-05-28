@@ -4,29 +4,13 @@ import { useLocation, useNavigate } from "react-router";
 import axios from "axios";
 
 const Login = () => {
-  const {
-    loginUser,
-    setEmail,
-    setPassword,
-    loginResponse,
-    userData,
-    setUserData,
-  } = useContext(AuthContext);
+  const { setEmail, setPassword, loginResponse, userData, setUserData } =
+    useContext(AuthContext);
 
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    loginUser();
-
-    console.log(
-      "location in login.jsx after calling loginUser():   ",
-      location?.state?.from?.pathname
-    );
-    navigate(location?.state?.from?.pathname);
-  };
-
-  const handleLogin2 = async () => {
+  const handleLogin = async () => {
     try {
       const url = "/api/auth/login";
       const data = {
@@ -37,13 +21,13 @@ const Login = () => {
       localStorage.setItem("token", response.data.encodedToken);
       if (response.status === 200) {
         setUserData((prevUserData) => {
-          console.log("setting userdata data");
+          // console.log("setting userdata data");
           const setValue = {
             ...prevUserData,
             loginResponse: "Login Successful",
             isLoggedIn: true,
           };
-          console.log("setValue: ", setValue);
+          //console.log("setValue: ", setValue);
           navigate(location?.state?.from?.pathname);
           return setValue;
         });
@@ -60,8 +44,8 @@ const Login = () => {
       <input type="text" onChange={(e) => setEmail(e)} />
       <label htmlFor="pwd">Enter password</label>
       <input type="password" onChange={(e) => setPassword(e)} />
-      <button onClick={() => handleLogin2()}>Login</button>
-      //<span>{loginResponse}</span>
+      <button onClick={() => handleLogin()}>Login</button>
+      <span>{loginResponse}</span>
     </div>
   );
 };
