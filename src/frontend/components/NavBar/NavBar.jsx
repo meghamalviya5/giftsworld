@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
+import { CartContext } from "../../contexts/CartContext";
 
 const NavBar = () => {
+  const { getCart, cart } = useContext(CartContext);
+
+  useEffect(() => {
+    getCart();
+  }, []);
   return (
     <div className="nav-bar">
       <div className="nav-item">
@@ -13,13 +19,15 @@ const NavBar = () => {
       </div>
       <div className="nav-login">
         <div className="nav-login-item">
-          <button>Login</button>
+          <Link to="/login">
+            <button>Login</button>
+          </Link>
         </div>
         <div className="nav-login-item">
-          <Link to="wishlist">Wishlist</Link>
+          <Link to="wishlist">Wishlist({})</Link>
         </div>
         <div className="nav-login-item">
-          <Link to="cart">Cart</Link>
+          <Link to="cart">Cart({cart.length})</Link>
         </div>
       </div>
     </div>

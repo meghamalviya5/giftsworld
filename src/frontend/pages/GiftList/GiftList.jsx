@@ -12,7 +12,7 @@ const GiftList = () => {
 
   useEffect(() => {
     getGiftsByCategory(categoryId);
-    console.log("after context call in useffect");
+    // console.log("after context call in useffect");
   }, []);
 
   return (
@@ -32,7 +32,7 @@ const GiftList = () => {
                   <b>&#x20B9; {gift.price}</b>
                 </div>
               </Link>
-              <button className="card-btn" onClick={(gift) => addToCart(gift)}>
+              <button className="card-btn" onClick={() => addToCart(gift)}>
                 Add To Cart
               </button>
             </div>

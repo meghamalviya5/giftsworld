@@ -60,7 +60,7 @@ const GiftProvider = ({ children }) => {
     giftsCategories: [],
     selectedFilters: [],
   };
-  console.log("gifts...in context - ", gifts);
+  //console.log("gifts...in context - ", gifts);
 
   const [state, dispatch] = useReducer(giftReducer, initialValue);
 
@@ -88,6 +88,7 @@ const GiftProvider = ({ children }) => {
       });
     },
   };
+  console.log("hihihi see ", state.filteredGiftList);
 
   return (
     <GiftContext.Provider value={valueProp}>{children}</GiftContext.Provider>

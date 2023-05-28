@@ -3,9 +3,13 @@ import "./App.css";
 
 import Mockman from "mockman-js";
 import NavBar from "./frontend/components/NavBar/NavBar";
+import RequiresAuth from "./frontend/components/RequiresAuth";
 import Home from "./frontend/pages/Home/Home";
 import GiftList from "./frontend/pages/GiftList/GiftList";
 import GiftDetails from "./frontend/pages/GiftDetails/GiftDetails";
+import Cart from "./frontend/pages/Cart/Cart";
+import Wishlist from "./frontend/pages/Wishlist/Wishlist";
+import Login from "./frontend/pages/Login/Login";
 
 function App() {
   return (
@@ -16,6 +20,23 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/api/category/:categoryId" element={<GiftList />} />
           <Route path="/giftDetails/:giftId" element={<GiftDetails />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/cart"
+            element={
+              <RequiresAuth>
+                <Cart />
+              </RequiresAuth>
+            }
+          />
+          <Route
+            path="/wishlist"
+            element={
+              <RequiresAuth>
+                <Wishlist />
+              </RequiresAuth>
+            }
+          />
 
           <Route path="/mockman" element={<Mockman />} />
         </Routes>
