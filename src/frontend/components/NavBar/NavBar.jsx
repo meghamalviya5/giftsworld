@@ -1,14 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 import { CartContext } from "../../contexts/CartContext";
 
 const NavBar = () => {
-  const { getCart, cart } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
 
-  useEffect(() => {
-    getCart();
-  }, []);
+  const numberOfCartItems = cart?.reduce((count, { qty }) => count + qty, 0);
+
+  //useEffect(() => {
+  // getCart();
+  //}, []);
   return (
     <div className="nav-bar">
       <div className="nav-item">
@@ -27,7 +29,7 @@ const NavBar = () => {
           <Link to="wishlist">Wishlist({})</Link>
         </div>
         <div className="nav-login-item">
-          <Link to="/cart">Cart({cart.length})</Link>
+          <Link to="/cart">Cart({numberOfCartItems})</Link>
         </div>
       </div>
     </div>

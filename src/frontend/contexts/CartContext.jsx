@@ -19,6 +19,7 @@ const CartProvider = ({ children }) => {
     addToCart: async (item) => {
       try {
         const data = { product: item };
+        console.log("json string : ", JSON.stringify(item));
         const response = await axios.post("/api/user/cart", data, {
           headers: {
             authorization: encodedToken,
@@ -45,15 +46,48 @@ const CartProvider = ({ children }) => {
         console.log(error);
       }
     },
-    itemQuantityIncrement: (itemName) => {
-      dispatch({ type: "CART_ITEM_QUANTITY_INCREMENT", payload: itemName });
-      // const itemInCart = state.cart.find(
-      //   (cartItem) => cartItem.name === itemName
-      // );
+    itemQuantityIncrement: async (productId) => {
+      try {
+        const url = `/api/user/cart/${productId}`;
+        const data = { action: { type: "increment" } };
+        //const requestHeaders = { header: { authorization: encodedToken } };
+        const response = await axios.post(url, data, {
+          headers: {
+            authorization: encodedToken,
+          },
+        });
+        dispatch({
+          type: "CART_ITEM_QUANTITY_INCREMENT",
+          payload: response.data.cart,
+        });
+      } catch (error) {
+        console.log(error);
+      }
     },
-    itemQuantityDecrement: (itemName) => {
-      dispatch({ type: "CART_ITEM_QUANTITY_DECREMENT", payload: itemName });
+    // (itemName) => {
+    //   dispatch({ type: "CART_ITEM_QUANTITY_INCREMENT", payload: itemName });
+    // },
+    itemQuantityDecrement: async (productId) => {
+      try {
+        const url = `/api/user/cart/${productId}`;
+        const data = { action: { type: "decrement" } };
+
+        const response = await axios.post(url, data, {
+          headers: {
+            authorization: encodedToken,
+          },
+        });
+        dispatch({
+          type: "CART_ITEM_QUANTITY_DECREMENT",
+          payload: response.data.cart,
+        });
+      } catch (error) {
+        console.log(error);
+      }
     },
+    // (itemName) => {
+    //   dispatch({ type: "CART_ITEM_QUANTITY_DECREMENT", payload: itemName });
+    // },
     updateCartItems: (e, itemName) => {
       console.log(e, " ee  == updatecartitems :: ", itemName);
       dispatch({
@@ -64,15 +98,12 @@ const CartProvider = ({ children }) => {
     removeFromCart: async (productId) => {
       console.log("removeFromCart cartcontext id, ", productId);
       try {
-        const response = await axios.delete(
-          `/api/user/cart/${productId}`,
-          {},
-          {
-            headers: {
-              authorization: encodedToken,
-            },
-          }
-        );
+        const url = `/api/user/cart/${productId}`;
+        const response = await axios.delete(url, {
+          headers: {
+            authorization: encodedToken,
+          },
+        });
         dispatch({ type: "REMOVE_FROM_CART", payload: response.data.cart });
       } catch (error) {
         console.log(error);

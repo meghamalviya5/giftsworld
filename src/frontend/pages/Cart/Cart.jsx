@@ -10,9 +10,23 @@ const Cart = () => {
     updateCartItems,
     removeFromCart,
   } = useContext(CartContext);
+
+  const numberOfCartItems = cart.reduce((count, { qty }) => count + qty, 0);
+
+  const totalPrice = cart.reduce(
+    (totalPrice, { price, qty }) => totalPrice + price * qty,
+    0
+  );
+
+  const totalDiscount = cart.reduce(
+    (totalDiscount, { price, discount }) =>
+      totalDiscount + Math.floor((price * discount) / 100),
+    0
+  );
+
   return cart.length ? (
     <div className="cart-cont">
-      <h3>My Cart({cart.length})</h3>
+      <h3>My Cart({numberOfCartItems})</h3>
       <div className="cart-items">
         <div className="cart-items-card-container">
           {cart.map((cartItem) => (
@@ -44,7 +58,8 @@ const Cart = () => {
                       <div className="cart-card-quantity">
                         <div>
                           <button
-                            onClick={() => itemQuantityDecrement(cartItem.name)}
+                            onClick={() => itemQuantityDecrement(cartItem._id)}
+                            //onClick={() => itemQuantityDecrement(cartItem.name)}
                           >
                             -
                           </button>
@@ -56,7 +71,7 @@ const Cart = () => {
                         />
                         <div>
                           <button
-                            onClick={() => itemQuantityIncrement(cartItem.name)}
+                            onClick={() => itemQuantityIncrement(cartItem._id)}
                           >
                             +
                           </button>
@@ -80,24 +95,24 @@ const Cart = () => {
           <h4>PRICE DETAILS</h4>
           <hr />
           <div className="cart-price-flex">
-            <p>Price (1 item)</p>
-            <p>₹2000</p>
+            <p>Price ({numberOfCartItems} item)</p>
+            <p>₹{totalPrice}</p>
           </div>
           <div className="cart-price-flex">
             <p>Discount</p>
-            <p>- ₹1000</p>
+            <p>₹{totalDiscount}</p>
           </div>
           <div className="cart-price-flex">
             <p>Delivery Charges</p>
-            <p>₹499</p>
+            <p>FREE</p>
           </div>
           <hr />
           <div className="cart-price-flex">
             <h4>TOTAL AMOUNT</h4>
-            <h4>₹2499</h4>
+            <h4>₹{totalPrice - totalDiscount}</h4>
           </div>
           <hr />
-          <p>You will save ₹1000 on this order</p>
+          <p>You will save ₹{totalDiscount} on this order</p>
           <button className="cart-card-button active-button">
             Place Order
           </button>

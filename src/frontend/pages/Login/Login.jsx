@@ -20,17 +20,13 @@ const Login = () => {
       const response = await axios.post(url, data);
       localStorage.setItem("token", response.data.encodedToken);
       if (response.status === 200) {
-        setUserData((prevUserData) => {
-          // console.log("setting userdata data");
-          const setValue = {
-            ...prevUserData,
-            loginResponse: "Login Successful",
-            isLoggedIn: true,
-          };
-          //console.log("setValue: ", setValue);
-          navigate(location?.state?.from?.pathname);
-          return setValue;
-        });
+        setUserData((prevUserData) => ({
+          ...prevUserData,
+          loginResponse: "Login Successful",
+          isLoggedIn: true,
+        }));
+
+        navigate(location?.state?.from?.pathname);
       }
     } catch (error) {
       console.log(error);

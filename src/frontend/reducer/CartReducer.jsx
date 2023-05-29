@@ -16,26 +16,35 @@ export const cartReducer = (state, action) => {
         cart: action.payload,
       };
     case "CART_ITEM_QUANTITY_INCREMENT":
-      const updatedCart = state.cart.map((cartItem) => {
-        if (cartItem.name === action.payload) {
-          console.log(cartItem.name, "  ===cartItem.name");
-          console.log(action.payload, "  ===action.payload");
-          console.log(cartItem.qty, "  ===cartItem.qty");
-          ++cartItem.qty;
-          console.log(cartItem.qty, "  ===cartItem.qty");
-        }
-        return { ...cartItem };
-      });
-      return { ...state, cart: updatedCart };
+      // const updatedCart = [...state.cart].map((cartItem) => {
+      //   if (cartItem.name === action.payload) {
+      //     console.log(cartItem.name, "  ===cartItem.name");
+      //     console.log(action.payload, "  ===action.payload");
+      //     console.log(cartItem.qty, "  ===cartItem.qty");
+      //     cartItem.qty = cartItem.qty + 1;
+      //     console.log(cartItem.qty, "  ===cartItem.qty");
+      //   }
+      //    return cartItem;
+      // });
+      // return { ...state, cart: updatedCart };
 
+      //worked
+      // const updatedCart = state.cart.map((cartItem) => {
+      //   if (cartItem.name === action.payload) {
+      //     return { ...cartItem, qty: Number(cartItem.qty) + 1 };
+      //   } else return cartItem;
+      // });
+      // return { ...state, cart: updatedCart };
+
+      return { ...state, cart: action.payload };
     case "CART_ITEM_QUANTITY_DECREMENT":
-      const updatedItem = state.cart.map((cartItem) => {
-        if (cartItem.name === action.payload && cartItem.qty > 1)
-          --cartItem.qty;
-        return cartItem;
-      });
-      return { ...state, cart: updatedItem };
-
+      // const updatedItem = state.cart.map((cartItem) => {
+      //   if (cartItem.name === action.payload && cartItem.qty > 1)
+      //     --cartItem.qty;
+      //   return cartItem;
+      // });
+      // return { ...state, cart: updatedItem };
+      return { ...state, cart: action.payload };
     case "UPDATE_CART_ITEMS":
       const updatedCartItem = state.cart.map((cartItem) => {
         console.log("action:: ", action.payload.event.target.value);
