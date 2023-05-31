@@ -6,9 +6,9 @@ import "./GiftDetails.css";
 const GiftDetails = () => {
   const { giftId } = useParams();
   const { filteredGiftList } = useContext(GiftContext);
-
+  console.log("in giftdetails");
   //find gift by id
-  const giftByID = filteredGiftList.find((gift) => (gift._id = giftId));
+  const giftByID = filteredGiftList.find((gift) => gift._id === Number(giftId));
   const { image, name, reviews, rating, price } = giftByID;
 
   return (

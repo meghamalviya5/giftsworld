@@ -2,11 +2,14 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 import { CartContext } from "../../contexts/CartContext";
+import { WishlistContext } from "../../contexts/WishlistContext";
 
 const NavBar = () => {
   const { cart } = useContext(CartContext);
-
+  const { wishlist } = useContext(WishlistContext);
   const numberOfCartItems = cart?.reduce((count, { qty }) => count + qty, 0);
+  console.log("wl::: ", wishlist);
+  const numberOfwishlistItems = wishlist?.length;
 
   //useEffect(() => {
   // getCart();
@@ -26,7 +29,7 @@ const NavBar = () => {
           </Link>
         </div>
         <div className="nav-login-item">
-          <Link to="wishlist">Wishlist({})</Link>
+          <Link to="/wishlist">Wishlist({numberOfwishlistItems})</Link>
         </div>
         <div className="nav-login-item">
           <Link to="/cart">Cart({numberOfCartItems})</Link>

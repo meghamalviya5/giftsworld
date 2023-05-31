@@ -214,7 +214,6 @@ export const products = [
     newArrival: false,
     trending: false,
   },
-
   {
     _id: 117,
     image:
@@ -228,7 +227,6 @@ export const products = [
     newArrival: false,
     trending: true,
   },
-  ,
   {
     _id: 118,
     image:

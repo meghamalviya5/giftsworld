@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material/icon-button": "^14.0.0",
+    "@material/react-icon-button": "^0.8.0",
+    "@material/react-material-icon": "^0.15.0",
     "dayjs": "^1.11.7",
     "jwt-decode": "^3.1.2",
     "jwt-encode": "^1.0.1",

@@ -10,6 +10,7 @@ import CategoryProvider from "./frontend/contexts/CategoryContext";
 import GiftProvider from "./frontend/contexts/GiftContext";
 import CartProvider from "./frontend/contexts/CartContext";
 import AuthProvider from "./frontend/contexts/AuthContext";
+import { WishlistProvider } from "./frontend/contexts/WishlistContext";
 
 // Call make Server
 makeServer();
@@ -23,13 +24,15 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <CategoryProvider>
-        <GiftProvider>
-          <AuthProvider>
+        <WishlistProvider>
+          <GiftProvider>
             <CartProvider>
-              <App />
+              <AuthProvider>
+                <App />
+              </AuthProvider>
             </CartProvider>
-          </AuthProvider>
-        </GiftProvider>
+          </GiftProvider>
+        </WishlistProvider>
       </CategoryProvider>
     </BrowserRouter>
   </React.StrictMode>

@@ -65,6 +65,7 @@ const GiftProvider = ({ children }) => {
   const [state, dispatch] = useReducer(giftReducer, initialValue);
 
   const valueProp = {
+    allGifts: state.allGifts,
     getGiftsByCategory,
     filteredGiftList: state.filteredGiftList,
     selectedFilters: state.selectedFilters,

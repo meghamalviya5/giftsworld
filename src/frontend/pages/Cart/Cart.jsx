@@ -7,8 +7,8 @@ const Cart = () => {
     cart,
     itemQuantityIncrement,
     itemQuantityDecrement,
-    updateCartItems,
     removeFromCart,
+    moveToWishlist,
   } = useContext(CartContext);
 
   const numberOfCartItems = cart.reduce((count, { qty }) => count + qty, 0);
@@ -40,7 +40,7 @@ const Cart = () => {
                   <div>
                     <div className="cart-card-price">
                       <h2>
-                        &#x20B9;{" "}
+                        &#x20B9;
                         {Math.floor(
                           cartItem.price -
                             (cartItem.price * cartItem.discount) / 100
@@ -58,17 +58,12 @@ const Cart = () => {
                       <div className="cart-card-quantity">
                         <div>
                           <button
-                            onClick={() => itemQuantityDecrement(cartItem._id)}
-                            //onClick={() => itemQuantityDecrement(cartItem.name)}
+                            onClick={() => itemQuantityDecrement(cartItem)}
                           >
                             -
                           </button>
                         </div>
-                        <input
-                          type="number"
-                          value={cartItem.qty}
-                          onChange={(e) => updateCartItems(e, cartItem.name)}
-                        />
+                        <input type="text" value={cartItem.qty} />
                         <div>
                           <button
                             onClick={() => itemQuantityIncrement(cartItem._id)}
@@ -86,7 +81,12 @@ const Cart = () => {
                 >
                   Remove From Cart
                 </button>
-                <button className="cart-card-wishlist">Move To Wishlist</button>
+                <button
+                  className="cart-card-wishlist"
+                  onClick={() => moveToWishlist(cartItem)}
+                >
+                  Move To Wishlist
+                </button>
               </div>
             </div>
           ))}

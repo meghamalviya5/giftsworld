@@ -1,0 +1,32 @@
+.wishlist-cont {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 2rem 8rem;
+}
+
+.wishlist-list {
+  display: flex;
+  gap: 2rem;
+}
+
+.wishlist-cont h3 {
+  text-align: center;
+  width: 100%;
+}
+
+.card-badge {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 999px;
+  box-shadow: 4px 4px 4px gray;
+  width: 2rem;
+  height: 2rem;
+  justify-content: center;
+  top: 1rem;
+  right: 1rem;
+}
+
+.card-badge .red-fav {
+  color: red;
+}

@@ -2,6 +2,12 @@
   display: flex;
 }
 
+.gifts-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .gifts-show {
   padding: 1rem 3rem;
 }
@@ -20,6 +26,7 @@
   /* align-items: center; */
   width: 15rem;
   height: 25rem;
+  position: relative;
 }
 
 .gift-details {
@@ -29,8 +36,56 @@
 }
 
 .gift-image {
+  display: flex;
+  align-items: center;
   width: 15rem;
   height: 15rem;
+}
+.gift-image,
+.gift-list-item,
+.card-badge,
+.gift-details {
+  display: flex;
+  align-items: center;
+}
+
+.card-btn {
+  padding: 0.6rem;
+  font: 1rem;
+  border: 5px sold blueviolet;
+  width: 100%;
+}
+
+.card-badge {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 999px;
+  box-shadow: 4px 4px 4px gray;
+  width: 2rem;
+  height: 2rem;
+  justify-content: center;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+/* .red-fav:hover {
+  color: blue;
+} */
+
+.card-badge .red-fav {
+  color: rgb(8, 8, 8);
+}
+
+.material-symbols-outlined:hover {
+  color: pink !important;
+}
+
+/* .products-items {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-block: 2rem;
 }
 
 .card-btn {
@@ -38,3 +93,64 @@
   font: 1rem;
   border: 5px sold blueviolet;
 }
+
+.card-img,
+.card-cont,
+.card-badge,
+.card-details {
+  display: flex;
+  align-items: center;
+}
+
+.card-cont,
+.card-details {
+  flex-direction: column;
+  width: 240px;
+}
+
+.card-img {
+  justify-content: center;
+  background: rgba(196, 196, 196, 0.5);
+  width: 13rem;
+  height: 15rem;
+  position: relative;
+  padding: 2rem 1rem;
+}
+
+.card-img img {
+  height: 90%;
+  width: auto;
+}
+
+.card-badge {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 999px;
+  box-shadow: 4px 4px 4px gray;
+  width: 2rem;
+  height: 2rem;
+  justify-content: center;
+  top: 1rem;
+  right: 1rem;
+}
+
+.card-badge .red-fav {
+  color: red;
+}
+
+.card-details {
+  padding: 1rem 2rem;
+}
+
+.card-button {
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem;
+  width: 100%;
+  border: none;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  background-color: #9a9a9a;
+}
+ */
