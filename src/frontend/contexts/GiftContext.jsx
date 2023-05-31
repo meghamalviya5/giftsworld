@@ -88,6 +88,9 @@ const GiftProvider = ({ children }) => {
         },
       });
     },
+    searchItems: (event) => {
+      dispatch({ type: "SEARCH_ITEMS", payload: event });
+    },
   };
 
   return (

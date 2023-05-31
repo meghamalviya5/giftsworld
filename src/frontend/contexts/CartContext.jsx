@@ -15,7 +15,6 @@ const CartProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
-  console.log("hii in context: state:: ", state);
   const removeCartItem = async (productId) => {
     console.log("removeFromCart cartcontext id, ", productId);
     try {
@@ -31,7 +30,11 @@ const CartProvider = ({ children }) => {
     }
   };
 
+  const findInCart = (itemId) =>
+    state.cart.find((cartItem) => cartItem._id === itemId);
+
   const valueProp = {
+    findInCart,
     cart: state.cart,
     cartItems: state.cartItems,
     addToCart: async (item) => {

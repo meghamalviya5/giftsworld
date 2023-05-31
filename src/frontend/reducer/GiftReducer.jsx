@@ -75,6 +75,14 @@ export const giftReducer = (state, action) => {
         selectedFilters: updatedSelectedFilters,
       };
 
+    case "SEARCH_ITEMS":
+      const searchedItems = state.filteredGiftList.filter((giftItem) =>
+        giftItem.name
+          .toLowerCase()
+          .includes(action.payload.target.value.toLowerCase())
+      );
+      return { ...state, filteredGiftList: searchedItems };
+
     default:
       return { state };
   }

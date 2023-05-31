@@ -1,11 +1,13 @@
 import { useContext } from "react";
+import MaterialIcon from "@material/react-material-icon";
 import { WishlistContext } from "../../contexts/WishlistContext";
 import "./Wishlist.css";
 
 const Wishlist = () => {
-  const { wishlist, moveToCart } = useContext(WishlistContext);
+  const { wishlist, moveToCart, removeFromWishlist } =
+    useContext(WishlistContext);
 
-  return (
+  return wishlist.length ? (
     <div className="wishlist-cont">
       <h3>My wishlist</h3>
       <div className="wishlist-list">
@@ -13,9 +15,12 @@ const Wishlist = () => {
           <div className="card-cont">
             <div className="card-img">
               <div className="card-badge">
-                <i className="red-fav material-symbols-outlined">favorite</i>
+                <MaterialIcon
+                  icon="favorite"
+                  onClick={() => removeFromWishlist(wishlistItem._id)}
+                />
               </div>
-              <img src={wishlist.image} alt="" />
+              <img src={wishlistItem.image} alt="" />
             </div>
             <div className="card-details">
               <div>{wishlistItem.name}</div>
@@ -39,11 +44,15 @@ const Wishlist = () => {
               className="card-button"
               onClick={() => moveToCart(wishlistItem)}
             >
-              Add To Cart
+              Move To Cart
             </button>
           </div>
         ))}
       </div>
+    </div>
+  ) : (
+    <div className="wishlist-empty">
+      <h3>Your Wishlist is Empty!!</h3>
     </div>
   );
 };

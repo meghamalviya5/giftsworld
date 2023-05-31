@@ -19,7 +19,11 @@ export const WishlistProvider = ({ children }) => {
     setWishlist(response.data.wishlist);
   };
 
+  const findInWishlist = (itemId) =>
+    wishlist.find((item) => item._id === itemId);
+
   const valueProp = {
+    findInWishlist,
     wishlist,
     addToWishlist: async (item) => {
       try {

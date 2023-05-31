@@ -1,15 +1,20 @@
 import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { GiftContext } from "../../contexts/GiftContext";
 import "./GiftDetails.css";
+import { WishlistContext } from "../../contexts/WishlistContext";
+import { CartContext } from "../../contexts/CartContext";
 
 const GiftDetails = () => {
   const { giftId } = useParams();
   const { filteredGiftList } = useContext(GiftContext);
+  const { findInWishlist, addToWishlist } = useContext(WishlistContext);
+  const { findInCart, addToCart } = useContext(CartContext);
   console.log("in giftdetails");
+
   //find gift by id
   const giftByID = filteredGiftList.find((gift) => gift._id === Number(giftId));
-  const { image, name, reviews, rating, price } = giftByID;
+  const { _id, image, name, reviews, rating, price } = giftByID;
 
   return (
     <div className="gift-detail-container">
@@ -22,8 +27,22 @@ const GiftDetails = () => {
         <span>({reviews} Reviews)</span>
         <p>&#x20B9; {price}</p>
         <div>
-          <button>Add to Cart</button>
-          <button>Add to Wishlist</button>
+          {findInCart(_id) ? (
+            <Link to="/cart">
+              <button>Go To Cart</button>
+            </Link>
+          ) : (
+            <button onClick={() => addToCart(giftByID)}>Add to Cart</button>
+          )}
+          {findInWishlist(_id) ? (
+            <Link to="/wishlist">
+              <button>Go To Wishlist</button>
+            </Link>
+          ) : (
+            <button onClick={() => addToWishlist(giftByID)}>
+              Add to Wishlist
+            </button>
+          )}
         </div>
       </div>
     </div>

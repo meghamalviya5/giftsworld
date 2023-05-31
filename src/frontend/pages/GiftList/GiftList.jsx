@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import IconButton from "@material/react-icon-button";
 import MaterialIcon from "@material/react-material-icon";
 
 import { GiftContext } from "../../contexts/GiftContext";
@@ -12,12 +11,12 @@ import { WishlistContext } from "../../contexts/WishlistContext";
 const GiftList = () => {
   const { categoryId } = useParams();
   const { getGiftsByCategory, filteredGiftList } = useContext(GiftContext);
-  const { addToCart, cart } = useContext(CartContext);
+  const { addToCart, findInCart } = useContext(CartContext);
   const { wishlist, addToWishlist, removeFromWishlist } =
     useContext(WishlistContext);
 
-  const findInCart = (itemId) =>
-    cart.find((cartItem) => cartItem._id === itemId);
+  // const findInCart = (itemId) =>
+  //   cart.find((cartItem) => cartItem._id === itemId);
 
   const isWishlisted = (itemId) => wishlist.find((item) => item._id === itemId);
 
@@ -33,7 +32,8 @@ const GiftList = () => {
       </div>
       <div className="gifts-show">
         <div class="gifts-head">
-          <h3>Showing All Products</h3> <span>( Showing 20 Products )</span>
+          <h3>Showing All Products</h3>{" "}
+          <span>( Showing {filteredGiftList.length} Products )</span>
         </div>
         <div className="gift-list">
           {filteredGiftList?.map((gift) => (
@@ -42,11 +42,7 @@ const GiftList = () => {
                 <Link to={`/giftDetails/${gift._id}`}>
                   <img className="gift-image" src={gift.image} alt="" />
                 </Link>
-                <span
-                  className="card-badge"
-                  // onClick={() => addToWishlist(gift)}
-                >
-                  {/* <IconButton> */}
+                <span className="card-badge">
                   {isWishlisted(gift._id) ? (
                     <MaterialIcon
                       icon="favorite"
@@ -58,10 +54,6 @@ const GiftList = () => {
                       onClick={() => addToWishlist(gift)}
                     />
                   )}
-                  {/* </IconButton> */}
-                  {/* <i className="material-icons">
-                      {isWishlisted(gift._id) ? favorite : favorite_border}
-                    </i> */}
                 </span>
               </div>
               <Link to={`/giftDetails/${gift._id}`}>
