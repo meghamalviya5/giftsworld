@@ -8,7 +8,7 @@ import { makeServer } from "./server";
 import { CategoryContext } from "./frontend/contexts/CategoryContext";
 import CategoryProvider from "./frontend/contexts/CategoryContext";
 import GiftProvider from "./frontend/contexts/GiftContext";
-import CartProvider from "./frontend/contexts/CartContext";
+import CartWishlistProvider from "./frontend/contexts/CartWishlistContext";
 import AuthProvider from "./frontend/contexts/AuthContext";
 import { WishlistProvider } from "./frontend/contexts/WishlistContext";
 
@@ -24,15 +24,13 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <CategoryProvider>
-        <WishlistProvider>
-          <GiftProvider>
-            <CartProvider>
-              <AuthProvider>
-                <App />
-              </AuthProvider>
-            </CartProvider>
-          </GiftProvider>
-        </WishlistProvider>
+        <GiftProvider>
+          <CartWishlistProvider>
+            <AuthProvider>
+              <App />
+            </AuthProvider>
+          </CartWishlistProvider>
+        </GiftProvider>
       </CategoryProvider>
     </BrowserRouter>
   </React.StrictMode>

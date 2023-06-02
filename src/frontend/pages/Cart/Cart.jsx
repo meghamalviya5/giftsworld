@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import { CartContext } from "../../contexts/CartContext";
+import { Link } from "react-router-dom";
+import { CartWishlistContext } from "../../contexts/CartWishlistContext";
 import "./Cart.css";
 
 const Cart = () => {
@@ -9,7 +10,8 @@ const Cart = () => {
     itemQuantityDecrement,
     removeFromCart,
     moveToWishlist,
-  } = useContext(CartContext);
+    findInWishlist,
+  } = useContext(CartWishlistContext);
 
   const numberOfCartItems = cart.reduce((count, { qty }) => count + qty, 0);
 
@@ -81,12 +83,21 @@ const Cart = () => {
                 >
                   Remove From Cart
                 </button>
-                <button
-                  className="cart-card-wishlist"
-                  onClick={() => moveToWishlist(cartItem)}
-                >
-                  Move To Wishlist
-                </button>
+
+                {findInWishlist(cartItem._id) ? (
+                  <Link to="/wishlist">
+                    <button className="cart-card-wishlist">
+                      Go To Wishlist
+                    </button>
+                  </Link>
+                ) : (
+                  <button
+                    className="cart-card-wishlist"
+                    onClick={() => moveToWishlist(cartItem)}
+                  >
+                    Move to Wishlist
+                  </button>
+                )}
               </div>
             </div>
           ))}

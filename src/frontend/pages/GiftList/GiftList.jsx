@@ -5,15 +5,13 @@ import MaterialIcon from "@material/react-material-icon";
 import { GiftContext } from "../../contexts/GiftContext";
 import "./GiftList.css";
 import Filters from "../../components/Filters/Filters";
-import { CartContext } from "../../contexts/CartContext";
-import { WishlistContext } from "../../contexts/WishlistContext";
+import { CartWishlistContext } from "../../contexts/CartWishlistContext";
 
 const GiftList = () => {
   const { categoryId } = useParams();
   const { getGiftsByCategory, filteredGiftList } = useContext(GiftContext);
-  const { addToCart, findInCart } = useContext(CartContext);
-  const { wishlist, addToWishlist, removeFromWishlist } =
-    useContext(WishlistContext);
+  const { addToCart, findInCart, wishlist, addToWishlist, removeFromWishlist } =
+    useContext(CartWishlistContext);
 
   // const findInCart = (itemId) =>
   //   cart.find((cartItem) => cartItem._id === itemId);

@@ -2,14 +2,13 @@ import { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { GiftContext } from "../../contexts/GiftContext";
 import "./GiftDetails.css";
-import { WishlistContext } from "../../contexts/WishlistContext";
-import { CartContext } from "../../contexts/CartContext";
+import { CartWishlistContext } from "../../contexts/CartWishlistContext";
 
 const GiftDetails = () => {
   const { giftId } = useParams();
   const { filteredGiftList } = useContext(GiftContext);
-  const { findInWishlist, addToWishlist } = useContext(WishlistContext);
-  const { findInCart, addToCart } = useContext(CartContext);
+  const { findInCart, addToCart, findInWishlist, addToWishlist } =
+    useContext(CartWishlistContext);
   console.log("in giftdetails");
 
   //find gift by id

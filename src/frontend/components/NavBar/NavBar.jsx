@@ -1,13 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
-import { CartContext } from "../../contexts/CartContext";
-import { WishlistContext } from "../../contexts/WishlistContext";
+import { CartWishlistContext } from "../../contexts/CartWishlistContext";
 import { GiftContext } from "../../contexts/GiftContext";
 
 const NavBar = () => {
-  const { cart } = useContext(CartContext);
-  const { wishlist } = useContext(WishlistContext);
+  const { cart, wishlist } = useContext(CartWishlistContext);
   const { searchItems } = useContext(GiftContext);
 
   const numberOfCartItems = cart?.reduce((count, { qty }) => count + qty, 0);

@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import MaterialIcon from "@material/react-material-icon";
-import { WishlistContext } from "../../contexts/WishlistContext";
+import { CartWishlistContext } from "../../contexts/CartWishlistContext";
 import "./Wishlist.css";
 
 const Wishlist = () => {
-  const { wishlist, moveToCart, removeFromWishlist } =
-    useContext(WishlistContext);
+  const { wishlist, moveToCart, removeFromWishlist, findInCart } =
+    useContext(CartWishlistContext);
 
   return wishlist.length ? (
     <div className="wishlist-cont">
@@ -40,11 +40,14 @@ const Wishlist = () => {
                 <h4>{wishlistItem.discount}% OFF</h4>
               </div>
             </div>
+
             <button
               className="card-button"
               onClick={() => moveToCart(wishlistItem)}
             >
-              Move To Cart
+              {findInCart(wishlistItem._id)
+                ? "Added To Cart! Click to Add More"
+                : "Move To Cart"}
             </button>
           </div>
         ))}
