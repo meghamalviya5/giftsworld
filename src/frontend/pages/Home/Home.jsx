@@ -3,6 +3,7 @@ import { CategoryContext } from "../../contexts/CategoryContext";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import Carousel from "../../components/Carousel/Carousel";
+import Spinner from "../../components/Spinner/Spinner";
 
 const Home = () => {
   const { categories, errorOnHome, isLoading, arrivalAndTrending } =
@@ -10,7 +11,7 @@ const Home = () => {
   //const topCategories = getTopCategories()
 
   return isLoading ? (
-    <h2>Loading..</h2>
+    <Spinner />
   ) : errorOnHome ? (
     <h2>{errorOnHome}</h2>
   ) : (

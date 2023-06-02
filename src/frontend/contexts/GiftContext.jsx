@@ -94,7 +94,9 @@ const GiftProvider = ({ children }) => {
   };
 
   return (
-    <GiftContext.Provider value={valueProp}>{children}</GiftContext.Provider>
+    <GiftContext.Provider value={{ ...valueProp, isLoading, error }}>
+      {children}
+    </GiftContext.Provider>
   );
 };
 

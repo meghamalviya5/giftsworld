@@ -6,10 +6,12 @@ import { GiftContext } from "../../contexts/GiftContext";
 import "./GiftList.css";
 import Filters from "../../components/Filters/Filters";
 import { CartWishlistContext } from "../../contexts/CartWishlistContext";
+import Spinner from "../../components/Spinner/Spinner";
 
 const GiftList = () => {
   const { categoryId } = useParams();
-  const { getGiftsByCategory, filteredGiftList } = useContext(GiftContext);
+  const { getGiftsByCategory, filteredGiftList, isLoading, error } =
+    useContext(GiftContext);
   const { addToCart, findInCart, wishlist, addToWishlist, removeFromWishlist } =
     useContext(CartWishlistContext);
 
@@ -23,7 +25,11 @@ const GiftList = () => {
     // console.log("after context call in useffect");
   }, []);
 
-  return (
+  return isLoading ? (
+    <Spinner />
+  ) : error ? (
+    <h2>{error}</h2>
+  ) : (
     <div className="filter-gifts">
       <div>
         <Filters />
