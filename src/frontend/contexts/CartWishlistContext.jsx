@@ -1,6 +1,11 @@
 import { createContext, useContext, useReducer, useState } from "react";
 import { cartReducer } from "../reducer/CartReducer";
 import axios from "axios";
+
+// React Toastify
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { GiftContext } from "./GiftContext";
 
 const encodedToken = localStorage.getItem("token");
@@ -21,6 +26,7 @@ const CartWishlistProvider = ({ children }) => {
       },
     });
     setWishlist(response.data.wishlist);
+    toast.success("Removed Item to Wishlist");
   };
 
   const addWishlistItem = async (item) => {
@@ -33,6 +39,7 @@ const CartWishlistProvider = ({ children }) => {
         },
       });
       setWishlist(response.data.wishlist);
+      toast.success("Added Item to Wishlist");
     } catch (error) {
       console.log(error);
     }
@@ -51,6 +58,7 @@ const CartWishlistProvider = ({ children }) => {
         },
       });
       dispatch({ type: "REMOVE_FROM_CART", payload: response.data.cart });
+      toast.success("Removed Item to Cart");
     } catch (error) {
       console.log(error);
     }
@@ -66,6 +74,7 @@ const CartWishlistProvider = ({ children }) => {
         },
       });
       dispatch({ type: "ADD_TO_CART_SUCCESS", payload: response.data.cart });
+      toast.success("Added Item to Cart");
     } catch (error) {
       console.log(error);
     }
@@ -84,6 +93,7 @@ const CartWishlistProvider = ({ children }) => {
         type: "CART_ITEM_QUANTITY_INCREMENT",
         payload: response.data.cart,
       });
+      toast.success("Successfully Increased Item Quantity");
     } catch (error) {
       console.log(error);
     }
@@ -150,6 +160,7 @@ const CartWishlistProvider = ({ children }) => {
             type: "CART_ITEM_QUANTITY_DECREMENT",
             payload: response.data.cart,
           });
+          toast.success("Successfully Decreased Item Quantity");
         } catch (error) {
           console.log(error);
         }

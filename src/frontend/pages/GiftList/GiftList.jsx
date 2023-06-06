@@ -1,12 +1,13 @@
 import { useContext, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import MaterialIcon from "@material/react-material-icon";
+import Spinner from "../../components/Spinner/Spinner";
+import { ToastContainer } from "react-toastify";
 
 import { GiftContext } from "../../contexts/GiftContext";
 import "./GiftList.css";
 import Filters from "../../components/Filters/Filters";
 import { CartWishlistContext } from "../../contexts/CartWishlistContext";
-import Spinner from "../../components/Spinner/Spinner";
 
 const GiftList = () => {
   const { categoryId } = useParams();
@@ -80,6 +81,7 @@ const GiftList = () => {
           ))}
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

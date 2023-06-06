@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import MaterialIcon from "@material/react-material-icon";
+import { ToastContainer } from "react-toastify";
 import { CartWishlistContext } from "../../contexts/CartWishlistContext";
 import "./Wishlist.css";
 
@@ -52,6 +53,7 @@ const Wishlist = () => {
           </div>
         ))}
       </div>
+      <ToastContainer />
     </div>
   ) : (
     <div className="wishlist-empty">

@@ -2,10 +2,15 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useLocation, useNavigate } from "react-router";
 import axios from "axios";
+
+import { ToastContainer } from "react-toastify";
+// React Toastify
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Login.css";
 
 const Login = () => {
-  const { setEmail, setPassword, loginResponse, userData, setUserData } =
+  const { setEmail, setPassword, userData, setUserData } =
     useContext(AuthContext);
 
   const location = useLocation();
@@ -24,14 +29,23 @@ const Login = () => {
         setUserData((prevUserData) => ({
           ...prevUserData,
           loginResponse: "Login Successful",
+          loggedInUser: response.data.foundUser,
           isLoggedIn: true,
         }));
+        console.log(response.data);
 
-        navigate(location?.state?.from?.pathname);
+        toast.success("Login Successful");
+        console.log(location?.state?.from?.pathname);
+        if (location?.pathname === "/login") {
+          navigate("/");
+        } else {
+          navigate(location?.state?.from?.pathname);
+        }
       }
     } catch (error) {
       console.log(error);
       setUserData({ ...userData, loginResponse: "Error: Failed to Login" });
+      toast.error("Login failed!");
     }
   };
 
@@ -59,24 +73,24 @@ const Login = () => {
             onChange={(e) => setPassword(e)}
           />
         </div>
-        <div className="login-forgot-details">
+        {/* <div className="login-forgot-details">
           <div className="remember-me">
             <input type="checkbox" />
             <label>Remember Me</label>
           </div>
           <div className="forgot-password">Forgot your Password?</div>
-        </div>
+        </div> */}
         <button
           className="card-button active-button"
           onClick={() => handleLogin()}
         >
           Login
         </button>
-        <span>{loginResponse}</span>
         <a className="create-new-account" href="/signup">
           Create New Account
         </a>
       </div>
+      <ToastContainer />
     </div>
   );
 };

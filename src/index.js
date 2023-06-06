@@ -10,7 +10,6 @@ import CategoryProvider from "./frontend/contexts/CategoryContext";
 import GiftProvider from "./frontend/contexts/GiftContext";
 import CartWishlistProvider from "./frontend/contexts/CartWishlistContext";
 import AuthProvider from "./frontend/contexts/AuthContext";
-import { WishlistProvider } from "./frontend/contexts/WishlistContext";
 
 // Call make Server
 makeServer();

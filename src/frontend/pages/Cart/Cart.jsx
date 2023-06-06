@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+
 import { CartWishlistContext } from "../../contexts/CartWishlistContext";
 import "./Cart.css";
 
@@ -129,6 +131,7 @@ const Cart = () => {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   ) : (
     <div className="cart-empty">

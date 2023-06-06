@@ -10,6 +10,7 @@ import GiftDetails from "./frontend/pages/GiftDetails/GiftDetails";
 import Cart from "./frontend/pages/Cart/Cart";
 import Wishlist from "./frontend/pages/Wishlist/Wishlist";
 import Login from "./frontend/pages/Login/Login";
+import Signup from "./frontend/pages/Signup/Signup";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/api/category/:categoryId" element={<GiftList />} />
           <Route path="/giftDetails/:giftId" element={<GiftDetails />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route
             path="/cart"
             element={

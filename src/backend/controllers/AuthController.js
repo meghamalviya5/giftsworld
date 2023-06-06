@@ -14,6 +14,8 @@ const sign = require("jwt-encode");
  * */
 
 export const signupHandler = function (schema, request) {
+  console.log("Hi in Auth Controller::");
+  console.log("..parsed - ", JSON.parse(request.requestBody));
   const { email, password, ...rest } = JSON.parse(request.requestBody);
   try {
     // check if email already exists
