@@ -36,7 +36,7 @@ const Login = () => {
 
         toast.success("Login Successful");
         console.log(location?.state?.from?.pathname);
-        if (location?.pathname === "/login") {
+        if (location?.state === null && location?.pathname === "/login") {
           navigate("/");
         } else {
           navigate(location?.state?.from?.pathname);
@@ -80,6 +80,23 @@ const Login = () => {
           </div>
           <div className="forgot-password">Forgot your Password?</div>
         </div> */}
+        {/* {userData.isLoggedIn ? (
+          <button
+            className="card-button active-button"
+            onClick={() => handleLogin()}
+          >
+            {console.log(userData.isLoggedIn, "...isloggedin1")}
+            {"Logout"}
+          </button>
+        ) : (
+          <button
+            className="card-button active-button"
+            onClick={() => handleLogin()}
+          >
+            {console.log(userData.isLoggedIn, "...isloggedin2")}
+            {"Login"}
+          </button>
+        )} */}
         <button
           className="card-button active-button"
           onClick={() => handleLogin()}

@@ -25,7 +25,7 @@ const GiftDetails = () => {
   const { _id, image, name, reviews, rating, price } = giftByID;
 
   return (
-    <div className="gift-detail-container">
+    <div className="gift-list-item">
       <div className="card-header">
         <div className="">
           <img src={image} className="gift-detail-image" alt="" />
@@ -52,17 +52,20 @@ const GiftDetails = () => {
         <div>
           {findInCart(_id) ? (
             <Link to="/cart">
-              <button>Go To Cart</button>
+              <button className="card-btn">Go To Cart</button>
             </Link>
           ) : (
             <button onClick={() => addToCart(giftByID)}>Add to Cart</button>
           )}
           {findInWishlist(_id) ? (
             <Link to="/wishlist">
-              <button>Go To Wishlist</button>
+              <button className="card-btn">Go To Wishlist</button>
             </Link>
           ) : (
-            <button onClick={() => addToWishlist(giftByID)}>
+            <button
+              className="card-btn"
+              onClick={() => addToWishlist(giftByID)}
+            >
               Add to Wishlist
             </button>
           )}

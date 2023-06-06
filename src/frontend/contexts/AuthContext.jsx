@@ -14,7 +14,15 @@ const AuthProvider = ({ children }) => {
     password: "",
     loginResponse: "",
     loggeddInUser: {},
+    address: [],
     isLoggedIn: false,
+  });
+
+  const [userAddress, setUserAddress] = useState({
+    name: "",
+    address: { street: "", city: "", state: "", country: "" },
+    zipCode: "",
+    phone: "",
   });
 
   //call to signup post api
@@ -40,7 +48,7 @@ const AuthProvider = ({ children }) => {
 
     let requestBody = {};
     for (const [key, value] of formData.entries()) {
-      console.log(`${key}, ${value}`);
+      //console.log(`${key}, ${value}`);
       requestBody = { ...requestBody, [key]: value };
     }
 
@@ -66,6 +74,8 @@ const AuthProvider = ({ children }) => {
         userData,
         setUserData,
         setPassword,
+        userAddress,
+        setUserAddress,
         isLoggedIn: userData.isLoggedIn,
         loginResponse: userData.loginResponse,
         handleSignup,

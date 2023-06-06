@@ -5,7 +5,6 @@ import Address from "../../components/Address/Address";
 const Profile = () => {
   return (
     <div>
-      Profile
       <User />
       <Address />
     </div>

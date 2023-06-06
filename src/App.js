@@ -12,6 +12,7 @@ import Wishlist from "./frontend/pages/Wishlist/Wishlist";
 import Login from "./frontend/pages/Login/Login";
 import Signup from "./frontend/pages/Signup/Signup";
 import Profile from "./frontend/pages/Profile/Profile";
+import NewAddress from "./frontend/components/NewAddress/NewAddress";
 
 function App() {
   return (
@@ -24,6 +25,14 @@ function App() {
           <Route path="/giftDetails/:giftId" element={<GiftDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/newAddress"
+            element={
+              <RequiresAuth>
+                <NewAddress />
+              </RequiresAuth>
+            }
+          />
           <Route
             path="/cart"
             element={
@@ -41,7 +50,14 @@ function App() {
             }
           />
 
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/profile"
+            element={
+              <RequiresAuth>
+                <Profile />
+              </RequiresAuth>
+            }
+          />
           <Route path="/mockman" element={<Mockman />} />
         </Routes>
       </header>

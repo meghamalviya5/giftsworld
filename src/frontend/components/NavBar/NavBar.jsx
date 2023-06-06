@@ -3,14 +3,20 @@ import { Link } from "react-router-dom";
 import "./NavBar.css";
 import { CartWishlistContext } from "../../contexts/CartWishlistContext";
 import { GiftContext } from "../../contexts/GiftContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const NavBar = () => {
   const { cart, wishlist } = useContext(CartWishlistContext);
   const { searchItems } = useContext(GiftContext);
+  const { userData, setUserData } = useContext(AuthContext);
 
   const numberOfCartItems = cart?.reduce((count, { qty }) => count + qty, 0);
 
   const numberOfwishlistItems = wishlist?.length;
+
+  const handleLogout = () => {
+    setUserData((prevData) => ({ ...prevData, isLoggedIn: false }));
+  };
 
   return (
     <div className="nav-bar">
@@ -27,9 +33,15 @@ const NavBar = () => {
       </div>
       <div className="nav-login">
         <div className="nav-login-item">
-          <Link to="/login">
-            <button>Login</button>
-          </Link>
+          {userData.isLoggedIn ? (
+            <Link to="/login">
+              <button onClick={handleLogout}>Logout</button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <button>Login</button>
+            </Link>
+          )}
         </div>
         <div className="nav-login-item">
           <Link to="/wishlist">Wishlist({numberOfwishlistItems})</Link>

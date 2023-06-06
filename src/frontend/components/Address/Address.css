@@ -1,0 +1,20 @@
+.address-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.address-list-item {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.address-details,
+.basic-details {
+  display: flex;
+}
+
+.more-details {
+  display: flex;
+  flex-direction: column;
+}
