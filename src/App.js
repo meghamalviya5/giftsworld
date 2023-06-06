@@ -11,6 +11,7 @@ import Cart from "./frontend/pages/Cart/Cart";
 import Wishlist from "./frontend/pages/Wishlist/Wishlist";
 import Login from "./frontend/pages/Login/Login";
 import Signup from "./frontend/pages/Signup/Signup";
+import Profile from "./frontend/pages/Profile/Profile";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             }
           />
 
+          <Route path="/profile" element={<Profile />} />
           <Route path="/mockman" element={<Mockman />} />
         </Routes>
       </header>

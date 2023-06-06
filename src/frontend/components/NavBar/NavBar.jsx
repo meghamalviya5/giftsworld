@@ -38,7 +38,7 @@ const NavBar = () => {
           <Link to="/cart">Cart({numberOfCartItems})</Link>
         </div>
         <div className="nav-login-item">
-          <Link to="/profile">Cart({numberOfCartItems})</Link>
+          <Link to="/profile">Profile</Link>
         </div>
       </div>
     </div>

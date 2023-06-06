@@ -1,15 +1,24 @@
 import { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
+import MaterialIcon from "@material/react-material-icon";
 import { GiftContext } from "../../contexts/GiftContext";
 import "./GiftDetails.css";
 import { CartWishlistContext } from "../../contexts/CartWishlistContext";
 
 const GiftDetails = () => {
   const { giftId } = useParams();
+  const { wishlist } = useContext(CartWishlistContext);
   const { filteredGiftList } = useContext(GiftContext);
-  const { findInCart, addToCart, findInWishlist, addToWishlist } =
-    useContext(CartWishlistContext);
+  const {
+    findInCart,
+    addToCart,
+    findInWishlist,
+    addToWishlist,
+    removeFromWishlist,
+  } = useContext(CartWishlistContext);
   console.log("in giftdetails");
+
+  const isWishlisted = (itemId) => wishlist.find((item) => item._id === itemId);
 
   //find gift by id
   const giftByID = filteredGiftList.find((gift) => gift._id === Number(giftId));
@@ -17,8 +26,23 @@ const GiftDetails = () => {
 
   return (
     <div className="gift-detail-container">
-      <div className="">
-        <img src={image} className="gift-detail-image" alt="" />
+      <div className="card-header">
+        <div className="">
+          <img src={image} className="gift-detail-image" alt="" />
+        </div>
+        <span className="card-badge">
+          {isWishlisted(_id) ? (
+            <MaterialIcon
+              icon="favorite"
+              onClick={() => removeFromWishlist(_id)}
+            />
+          ) : (
+            <MaterialIcon
+              icon="favorite_border"
+              onClick={() => addToWishlist(giftByID)}
+            />
+          )}
+        </span>
       </div>
       <div className="gift-info">
         <p>{name}</p>

@@ -13,13 +13,13 @@ const GiftList = () => {
   const { categoryId } = useParams();
   const { getGiftsByCategory, filteredGiftList, isLoading, error } =
     useContext(GiftContext);
-  const { addToCart, findInCart, wishlist, addToWishlist, removeFromWishlist } =
+  const { addToCart, findInCart, addToWishlist, removeFromWishlist, wishlist } =
     useContext(CartWishlistContext);
+
+  const isWishlisted = (itemId) => wishlist.find((item) => item._id === itemId);
 
   // const findInCart = (itemId) =>
   //   cart.find((cartItem) => cartItem._id === itemId);
-
-  const isWishlisted = (itemId) => wishlist.find((item) => item._id === itemId);
 
   useEffect(() => {
     getGiftsByCategory(categoryId);

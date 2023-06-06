@@ -9,6 +9,7 @@ import axios from "axios";
 
 import { CategoryContext } from "./CategoryContext";
 import { giftReducer } from "../reducer/GiftReducer";
+import { CartWishlistContext } from "./CartWishlistContext";
 
 export const GiftContext = createContext();
 
@@ -17,6 +18,7 @@ const GiftProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const { categories, arrivalAndTrending } = useContext(CategoryContext);
+  // const { wishlist } = useContext(CartWishlistContext);
 
   const getGifts = async () => {
     setIsLoading(true);

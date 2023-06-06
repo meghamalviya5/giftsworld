@@ -32,7 +32,7 @@ const Login = () => {
           loggedInUser: response.data.foundUser,
           isLoggedIn: true,
         }));
-        console.log(response.data);
+        console.log(response.data.foundUser, "...found User");
 
         toast.success("Login Successful");
         console.log(location?.state?.from?.pathname);
