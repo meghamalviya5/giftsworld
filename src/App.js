@@ -13,6 +13,7 @@ import Login from "./frontend/pages/Login/Login";
 import Signup from "./frontend/pages/Signup/Signup";
 import Profile from "./frontend/pages/Profile/Profile";
 import NewAddress from "./frontend/components/NewAddress/NewAddress";
+import Checkout from "./frontend/pages/Checkout/Checkout";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/giftDetails/:giftId" element={<GiftDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route
             path="/newAddress"
             element={

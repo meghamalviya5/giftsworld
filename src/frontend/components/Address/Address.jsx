@@ -75,9 +75,9 @@ const Address = () => {
       {userData.address.map((address) => {
         return (
           <div>
-            <label htmlFor="user-address" className="address-list-item">
+            <label htmlFor={address.id} className="address-list-item">
               <div className="basic-details">
-                <input type="radio" id="user-address" name="address-input" />
+                <input type="radio" id={address.id} name="address-input" />
                 <span className="address-details">
                   <p>{address.name} || </p>
                   <p>

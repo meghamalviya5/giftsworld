@@ -126,9 +126,7 @@ const Cart = () => {
           </div>
           <hr />
           <p>You will save ₹{totalDiscount} on this order</p>
-          <button className="cart-card-button active-button">
-            Place Order
-          </button>
+          <button className="cart-card-button active-button">Checkout</button>
         </div>
       </div>
       <ToastContainer />
