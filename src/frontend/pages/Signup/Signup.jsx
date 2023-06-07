@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
 import "./Signup.css";
+import "./images/show-password.svg";
 
 const Signup = () => {
   const { handleSignup } = useContext(AuthContext);
@@ -12,7 +13,9 @@ const Signup = () => {
     firstName: "",
     lastName: "",
     password: "",
+    showPassword: false,
     confirmPassword: "",
+    showConfirmPassword: false,
   });
   return (
     <form method="post" onSubmit={handleSignup}>
@@ -35,7 +38,7 @@ const Signup = () => {
             <label htmlFor="password">Password</label>
             <input
               name="password"
-              type="password"
+              type={userData.showPassword ? "text" : "password"}
               id="password"
               value={userData.password}
               onChange={(e) =>
@@ -47,7 +50,7 @@ const Signup = () => {
             <label htmlFor="confirm-password">Re-enter your password</label>
             <input
               name="confirmPassword"
-              type="password"
+              type={userData.showConfirmPassword ? "text" : "password"}
               id="confirm-password"
               value={userData.confirmPassword}
               onChange={(e) =>
