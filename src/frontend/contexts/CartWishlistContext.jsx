@@ -18,6 +18,22 @@ const CartWishlistProvider = ({ children }) => {
   const initialState = { cart: [] };
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
+  const numberOfCartItems = state.cart.reduce(
+    (count, { qty }) => count + qty,
+    0
+  );
+
+  const totalPrice = state.cart.reduce(
+    (totalPrice, { price, qty }) => totalPrice + price * qty,
+    0
+  );
+
+  const totalDiscount = state.cart.reduce(
+    (totalDiscount, { price, discount }) =>
+      totalDiscount + Math.floor((price * discount) / 100),
+    0
+  );
+
   const removeWishlistItem = async (productId) => {
     const url = `/api/user/wishlist/${productId}`;
     const response = await axios.delete(url, {
@@ -106,6 +122,9 @@ const CartWishlistProvider = ({ children }) => {
     findInWishlist,
     wishlist,
     findInCart,
+    numberOfCartItems,
+    totalPrice,
+    totalDiscount,
     cart: state.cart,
     cartItems: state.cartItems,
     addToWishlist: async (item) => await addWishlistItem(item),

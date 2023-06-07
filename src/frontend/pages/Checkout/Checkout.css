@@ -1,3 +1,7 @@
+h3 {
+  text-align: center;
+}
+
 .checkout-container {
   flex-grow: 1;
 }
@@ -81,4 +85,9 @@
 .order-header {
   font-weight: var(--font-semiBold);
   padding-bottom: 1rem;
+}
+
+.address-details-checkout {
+  display: flex;
+  flex-direction: column;
 }

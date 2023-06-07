@@ -3,6 +3,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import "./Address.css";
+import AddressDetails from "../AddressDetails/AddressDetails";
 
 const addressObj = {
   id: 211,
@@ -75,11 +76,11 @@ const Address = () => {
       {userData.address.map((address) => {
         return (
           <div>
+            {/* <AddressDetails address={address} /> */}
             <label htmlFor={address.id} className="address-list-item">
               <div className="basic-details">
-                <input type="radio" id={address.id} name="address-input" />
-                <span className="address-details">
-                  <p>{address.name} || </p>
+                <span className="address-details-checkout">
+                  <p>{address.name} </p>
                   <p>
                     {address.address.street +
                       ", " +
@@ -89,11 +90,9 @@ const Address = () => {
                       ", " +
                       address.address.country}
                   </p>
+                  <p>Zip Code: {address.address.zipCode}</p>
+                  <p>Phone: {address.phone}</p>
                 </span>
-              </div>
-              <div className="more-details">
-                <p>Zip Code: {address.address.zipCode}</p>
-                <p>Phone: {address.phone}</p>
               </div>
             </label>
             <button onClick={() => editAddress(address.id)}>Edit</button>

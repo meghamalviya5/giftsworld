@@ -9,6 +9,10 @@
   text-align: left;
 }
 
+.basic-details {
+  align-items: baseline;
+}
+
 .address-details,
 .basic-details {
   display: flex;

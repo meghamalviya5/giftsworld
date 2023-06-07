@@ -4,6 +4,11 @@ import { v4 as uuid } from "uuid";
 import "./NewAddress.css";
 import { AuthContext } from "../../contexts/AuthContext";
 
+// React Toastify
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+
 console.log("..in new address");
 const NewAddress = () => {
   const { userData, setUserData, userAddress, setUserAddress } =
@@ -47,6 +52,7 @@ const NewAddress = () => {
       ...prevData,
       address: [...userData.address, newAddressInfo],
     }));
+    toast.success("Address added successfully!");
     navigate("/profile");
   };
 
@@ -169,6 +175,7 @@ const NewAddress = () => {
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

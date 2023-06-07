@@ -13,20 +13,10 @@ const Cart = () => {
     removeFromCart,
     moveToWishlist,
     findInWishlist,
+    numberOfCartItems,
+    totalPrice,
+    totalDiscount,
   } = useContext(CartWishlistContext);
-
-  const numberOfCartItems = cart.reduce((count, { qty }) => count + qty, 0);
-
-  const totalPrice = cart.reduce(
-    (totalPrice, { price, qty }) => totalPrice + price * qty,
-    0
-  );
-
-  const totalDiscount = cart.reduce(
-    (totalDiscount, { price, discount }) =>
-      totalDiscount + Math.floor((price * discount) / 100),
-    0
-  );
 
   return cart.length ? (
     <div className="cart-cont">
@@ -126,7 +116,9 @@ const Cart = () => {
           </div>
           <hr />
           <p>You will save ₹{totalDiscount} on this order</p>
-          <button className="cart-card-button active-button">Checkout</button>
+          <Link to="/checkout">
+            <button className="cart-card-button active-button">Checkout</button>
+          </Link>
         </div>
       </div>
       <ToastContainer />

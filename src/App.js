@@ -26,7 +26,14 @@ function App() {
           <Route path="/giftDetails/:giftId" element={<GiftDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/checkout" element={<Checkout />} />
+          <Route
+            path="/checkout"
+            element={
+              <RequiresAuth>
+                <Checkout />
+              </RequiresAuth>
+            }
+          />
           <Route
             path="/newAddress"
             element={

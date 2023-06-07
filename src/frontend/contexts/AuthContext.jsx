@@ -16,6 +16,7 @@ const AuthProvider = ({ children }) => {
     loggeddInUser: {},
     address: [],
     isLoggedIn: false,
+    deliveryAddress: [],
   });
 
   const [userAddress, setUserAddress] = useState({
@@ -25,6 +26,13 @@ const AuthProvider = ({ children }) => {
     phone: "",
   });
 
+  const [userDeliveryAddress, setUserDeliveryAddress] = useState({
+    id: 211,
+    name: "",
+    address: { street: "", city: "", state: "", country: "" },
+    zipCode: "",
+    phone: "",
+  });
   //call to signup post api
 
   //setEmail
@@ -76,6 +84,8 @@ const AuthProvider = ({ children }) => {
         setPassword,
         userAddress,
         setUserAddress,
+        userDeliveryAddress,
+        setUserDeliveryAddress,
         isLoggedIn: userData.isLoggedIn,
         loginResponse: userData.loginResponse,
         handleSignup,
