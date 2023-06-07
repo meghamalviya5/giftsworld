@@ -1,0 +1,19 @@
+.filter-block {
+  width: 20rem;
+  height: 100%;
+  padding: 1rem 3rem;
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter-clear {
+  text-decoration: underline;
+}
+
+.price-selector {
+  display: flex;
+  flex-direction: column;
+}

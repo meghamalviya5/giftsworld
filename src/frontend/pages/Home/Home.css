@@ -1,0 +1,19 @@
+.category {
+  display: flex;
+  justify-content: space-around;
+}
+
+.category-card {
+  width: 10rem;
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid green; */
+  align-items: center;
+}
+
+.category-img {
+  width: 8rem;
+  height: 6rem;
+  border-radius: 7rem;
+}
