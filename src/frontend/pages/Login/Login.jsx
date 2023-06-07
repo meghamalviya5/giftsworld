@@ -16,13 +16,21 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async (status) => {
     try {
       const url = "/api/auth/login";
-      const data = {
-        email: userData.email,
-        password: userData.password,
-      };
+      let data = {};
+      if (status === "test") {
+        data = {
+          email: "alex@gmail.com",
+          password: "123",
+        };
+      } else {
+        data = {
+          email: userData.email,
+          password: userData.password,
+        };
+      }
       const response = await axios.post(url, data);
       localStorage.setItem("token", response.data.encodedToken);
       if (response.status === 200) {
@@ -99,7 +107,13 @@ const Login = () => {
         )} */}
         <button
           className="card-button active-button"
-          onClick={() => handleLogin()}
+          onClick={() => handleLogin("test")}
+        >
+          Login as Test User
+        </button>
+        <button
+          className="card-button active-button"
+          onClick={() => handleLogin("")}
         >
           Login
         </button>
