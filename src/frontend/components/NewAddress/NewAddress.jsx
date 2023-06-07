@@ -84,7 +84,7 @@ const NewAddress = () => {
             className="text-input address-form-input"
             type="text"
             required=""
-            value={userAddress.address?.street}
+            value={userAddress?.address?.street}
             onChange={(e) =>
               setUserAddress({
                 ...userAddress,
@@ -98,7 +98,7 @@ const NewAddress = () => {
             className="text-input address-form-input"
             type="text"
             required=""
-            value={userAddress.address.city}
+            value={userAddress?.address?.city}
             onChange={(e) =>
               setUserAddress({
                 ...userAddress,
@@ -112,7 +112,7 @@ const NewAddress = () => {
             className="text-input address-form-input"
             type="text"
             required=""
-            value={userAddress.address.state}
+            value={userAddress?.address?.state}
             onChange={(e) =>
               setUserAddress({
                 ...userAddress,
@@ -126,7 +126,7 @@ const NewAddress = () => {
             className="text-input address-form-input"
             type="text"
             required=""
-            value={userAddress.address.country}
+            value={userAddress?.address?.country}
             onChange={(e) =>
               setUserAddress({
                 ...userAddress,

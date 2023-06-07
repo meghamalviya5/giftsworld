@@ -22,9 +22,14 @@ const Login = () => {
       let data = {};
       if (status === "test") {
         data = {
-          email: "alex@gmail.com",
+          email: "123",
           password: "123",
         };
+        setUserData((prevUserData) => ({
+          ...prevUserData,
+          email: "123",
+          password: "123",
+        }));
       } else {
         data = {
           email: userData.email,

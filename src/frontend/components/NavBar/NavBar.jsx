@@ -15,6 +15,7 @@ const NavBar = () => {
   const numberOfwishlistItems = wishlist?.length;
 
   const handleLogout = () => {
+    localStorage.clear();
     setUserData((prevData) => ({ ...prevData, isLoggedIn: false }));
   };
 
