@@ -12,7 +12,7 @@ export const giftReducer = (state, action) => {
     case "CLEAR_FILTERS":
       return {
         ...state,
-        filteredGiftList: state.originalGiftList,
+        filteredGiftList: action.payload,
       };
 
     case "PRICE_RANGE_FILTER":
@@ -57,7 +57,7 @@ export const giftReducer = (state, action) => {
 
       const filteredGiftListBySelectedCategory = action.payload.gifts.filter(
         (gift) => {
-          if (updatedSelectedFilters !== 0) {
+          if (updatedSelectedFilters.length !== 0) {
             return updatedSelectedFilters.some((filterType) => {
               if (action.payload.otherCategories.includes(filterType)) {
                 return gift[filterType];
