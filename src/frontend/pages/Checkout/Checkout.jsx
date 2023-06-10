@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import "./Checkout.css";
 import { CartWishlistContext } from "../../contexts/CartWishlistContext";
 import { Link } from "react-router-dom";
@@ -11,22 +11,9 @@ const Checkout = () => {
   const { userData, userDeliveryAddress, setUserDeliveryAddress } =
     useContext(AuthContext);
 
-  const [checkedStatus, setCheckedStatus] = useState(false);
-
   useEffect(() => {
     setUserDeliveryAddress(userData.address[0]);
-    isChecked();
   }, []);
-
-  const isChecked = (addressId) => {
-    console.log("is checked");
-    const res =
-      userDeliveryAddress.id === addressId
-        ? setCheckedStatus(true)
-        : setCheckedStatus(false);
-    console.log("is checked---", res);
-    return res;
-  };
 
   return (
     <div>
@@ -35,7 +22,7 @@ const Checkout = () => {
         <div className="checkout-manage">
           <div className="checkout-manage-item ">
             <div className="address-checkout-container ">
-              {userData.address.map((address) => {
+              {userData.address.map((address, index) => {
                 return (
                   <div>
                     <label htmlFor={address.id} className="address-list-item">
@@ -44,6 +31,7 @@ const Checkout = () => {
                           type="radio"
                           id={address.id}
                           name="address-input"
+                          defaultChecked={index === 0}
                           onChange={() => setUserDeliveryAddress(address)}
                         />
                         <span className="address-details-checkout">

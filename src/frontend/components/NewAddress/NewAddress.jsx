@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router";
-import { v4 as uuid } from "uuid";
 import "./NewAddress.css";
 import { AuthContext } from "../../contexts/AuthContext";
 
@@ -21,9 +20,9 @@ const NewAddress = () => {
 
     const form = e.target;
     const formData = new FormData(form);
-
+    const lastAddressId = userData.address[userData.address.length - 1].id + 1;
     let newAddressInfo = {
-      id: uuid(),
+      id: lastAddressId + 1,
       name: "",
       address: { street: "", city: "", state: "", country: "" },
       zipCode: "",
@@ -34,8 +33,7 @@ const NewAddress = () => {
         key === "street" ||
         key === "city" ||
         key === "state" ||
-        key === "country" ||
-        key === "zipCode"
+        key === "country"
       ) {
         newAddressInfo = {
           ...newAddressInfo,
@@ -52,6 +50,12 @@ const NewAddress = () => {
       ...prevData,
       address: [...userData.address, newAddressInfo],
     }));
+    setUserAddress({
+      name: "",
+      address: { street: "", city: "", state: "", country: "" },
+      zipCode: "",
+      phone: "",
+    });
     toast.success("Address added successfully!");
     navigate("/profile");
   };
@@ -60,11 +64,45 @@ const NewAddress = () => {
     navigate("/profile");
   };
 
-  console.log(userData, " after ..userData");
+  const handleUpdateAddresss = (e) => {
+    e.preventDefault();
+
+    //update existing address
+    const updatedAddress = userData.address.map((add) => {
+      if (userAddress.id === add.id) {
+        add.name = userAddress.name;
+        add.address = {
+          street: userAddress.address.street,
+          city: userAddress.address.city,
+          state: userAddress.address.state,
+          country: userAddress.address.country,
+        };
+        add.zipCode = userAddress.zipCode;
+        add.phone = userAddress.phone;
+      }
+      return add;
+    });
+    setUserData((prevData) => ({ ...prevData, address: updatedAddress }));
+    toast.success("Address Updated successfully!");
+    setUserAddress({
+      name: "",
+      address: { street: "", city: "", state: "", country: "" },
+      zipCode: "",
+      phone: "",
+    });
+    navigate("/profile");
+  };
 
   return (
     <div className="address-form-container displayFlex">
-      <form className="address-form" onSubmit={handleNewAddressSubmit}>
+      <form
+        className="address-form"
+        onSubmit={
+          userData.saveState === "add"
+            ? handleNewAddressSubmit
+            : handleUpdateAddresss
+        }
+      >
         <h4>ADD NEW ADDRESS</h4>
         <div className="form-input">
           <input

@@ -17,9 +17,11 @@ const AuthProvider = ({ children }) => {
     address: [],
     isLoggedIn: false,
     deliveryAddress: [],
+    saveState: "add",
   });
 
   const [userAddress, setUserAddress] = useState({
+    id: 0,
     name: "",
     address: { street: "", city: "", state: "", country: "" },
     zipCode: "",
@@ -33,6 +35,24 @@ const AuthProvider = ({ children }) => {
     zipCode: "",
     phone: "",
   });
+
+  const editAddress = (chosenAddress) => {
+    console.log(chosenAddress, "  in edit chosenAddress");
+    setUserData({ ...userData, saveState: "edit" });
+    setUserAddress({
+      id: chosenAddress.id,
+      name: chosenAddress.name,
+      address: {
+        street: chosenAddress.address.street,
+        city: chosenAddress.address.city,
+        state: chosenAddress.address.state,
+        country: chosenAddress.address.country,
+      },
+      zipCode: chosenAddress.zipCode,
+      phone: chosenAddress.phone,
+    });
+  };
+
   //call to signup post api
 
   //setEmail
@@ -52,7 +72,6 @@ const AuthProvider = ({ children }) => {
     //read form data
     const form = e.target;
     const formData = new FormData(form);
-    //console.log("e.target --- ", e.target);
 
     let requestBody = {};
     for (const [key, value] of formData.entries()) {
@@ -89,6 +108,7 @@ const AuthProvider = ({ children }) => {
         isLoggedIn: userData.isLoggedIn,
         loginResponse: userData.loginResponse,
         handleSignup,
+        editAddress,
       }}
     >
       {children}
