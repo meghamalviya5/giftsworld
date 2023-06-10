@@ -1,9 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+
+// React Toastify
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import "./Address.css";
-import AddressDetails from "../AddressDetails/AddressDetails";
 
 const addressObj = {
   id: 211,
@@ -13,14 +16,13 @@ const addressObj = {
     city: "North Brycen",
     state: "Nevada",
     country: "India",
-    zipCode: "00641",
   },
+  zipCode: "00641",
   phone: "1-650-866-5445",
 };
 
 const Address = () => {
-  const { userData, setUserData, userAddress, setUserAddress } =
-    useContext(AuthContext);
+  const { userData, setUserData, editAddress } = useContext(AuthContext);
 
   const populateAddress = () => {
     const testdata = userData.address.filter((data) => data.id === 211);
@@ -39,24 +41,9 @@ const Address = () => {
     console.log("in useEffect-------------");
     populateAddress();
   }, []);
-  const navigate = useNavigate();
 
-  const editAddress = async (chosenAddress) => {
-    console.log(chosenAddress, "  in edit chosenAddress");
-    setUserAddress(
-      {
-        name: chosenAddress.name,
-        address: {
-          street: chosenAddress.street,
-          city: chosenAddress.city,
-          state: chosenAddress.state,
-          country: chosenAddress.country,
-          zipCode: chosenAddress.zipCode,
-        },
-        phone: chosenAddress.phone,
-      },
-      () => navigate("/newAddress")
-    );
+  const addAddress = () => {
+    setUserData({ ...userData, saveState: "add" });
   };
 
   const deleteAddress = (chosenAddress) => {
@@ -67,6 +54,8 @@ const Address = () => {
       ...prevData,
       address: [...updatedAddress],
     }));
+
+    toast.success("Address deleted successfully!");
   };
 
   return (
@@ -76,8 +65,7 @@ const Address = () => {
       {userData.address.map((address) => {
         return (
           <div>
-            {/* <AddressDetails address={address} /> */}
-            <label htmlFor={address.id} className="address-list-item">
+            <label htmlFor={address?.id} className="address-list-item">
               <div className="basic-details">
                 <span className="address-details-checkout">
                   <p>{address.name} </p>
@@ -90,20 +78,23 @@ const Address = () => {
                       ", " +
                       address.address.country}
                   </p>
-                  <p>Zip Code: {address.address.zipCode}</p>
+                  <p>Zip Code: {address.zipCode}</p>
                   <p>Phone: {address.phone}</p>
                 </span>
               </div>
             </label>
-            <button onClick={() => editAddress(address.id)}>Edit</button>
+            <Link to="/newAddress" onClick={() => editAddress(address)}>
+              <button>Edit</button>
+            </Link>
 
             <button onClick={() => deleteAddress(address)}>Delete</button>
           </div>
         );
       })}
-      <Link to="/newAddress">
+      <Link to="/newAddress" onClick={addAddress}>
         <button>Add New Address</button>
       </Link>
+      <ToastContainer />
     </div>
   );
 };
