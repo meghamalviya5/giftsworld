@@ -67,7 +67,7 @@ const GiftList = () => {
                   <b>&#x20B9; {gift.price}</b>
                 </div>
               </Link>
-              {console.log("gift in gift.jsx ::: ", gift)}
+              {/* // {console.log("gift in gift.jsx ::: ", gift)} */}
               {findInCart(gift._id) ? (
                 <Link to="/cart">
                   <button className="card-btn">Go To Cart</button>

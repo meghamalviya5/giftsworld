@@ -4,17 +4,24 @@ import "./Filters.css";
 import { CategoryContext } from "../../contexts/CategoryContext";
 import { GiftContext } from "../../contexts/GiftContext";
 
+console.log("Hi in FIlters");
 const Filters = () => {
-  const { categories } = useContext(CategoryContext);
-  const { setPriceRange, sortList, setRating, setCategory } =
-    useContext(GiftContext);
+  const { categories, selectedCategoryId } = useContext(CategoryContext);
+  const {
+    allGifts,
+    setPriceRange,
+    sortList,
+    setRating,
+    setCategory,
+    clearFilters,
+  } = useContext(GiftContext);
   const ratings = [4, 3, 2, 1];
 
   return (
     <div className="filter-block">
       <div className="filter-header">
         <div>Filters</div>
-        <Link>Clear</Link>
+        <Link onClick={() => clearFilters(allGifts)}>Clear</Link>
       </div>
       <div className="price-selector">
         <label>Price </label>
@@ -37,6 +44,7 @@ const Filters = () => {
                 id={category._id}
                 value={category.categoryName}
                 onChange={(e) => setCategory(e)}
+                defaultChecked={category._id === selectedCategoryId}
               />
               {category.displayName}
             </label>

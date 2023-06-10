@@ -9,7 +9,6 @@ import axios from "axios";
 
 import { CategoryContext } from "./CategoryContext";
 import { giftReducer } from "../reducer/GiftReducer";
-import { CartWishlistContext } from "./CartWishlistContext";
 
 export const GiftContext = createContext();
 
@@ -39,7 +38,7 @@ const GiftProvider = ({ children }) => {
   const getGiftsByCategory = (categoryId) => {
     let byCategory = [];
     const selectedCategory = categories.find(
-      (category) => category._id === categoryId
+      (category) => category._id === Number(categoryId)
     ).categoryName;
 
     if (arrivalAndTrending.includes(selectedCategory)) {
@@ -86,12 +85,15 @@ const GiftProvider = ({ children }) => {
         payload: {
           event: value,
           gifts: state.allGifts,
-          otherCategories: categories,
+          otherCategories: arrivalAndTrending,
         },
       });
     },
     searchItems: (event) => {
       dispatch({ type: "SEARCH_ITEMS", payload: event });
+    },
+    clearFilters: () => {
+      dispatch({ type: "CLEAR_FILTERS", payload: state.allGifts });
     },
   };
 

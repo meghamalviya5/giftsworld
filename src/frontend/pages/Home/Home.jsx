@@ -6,8 +6,13 @@ import Carousel from "../../components/Carousel/Carousel";
 import Spinner from "../../components/Spinner/Spinner";
 
 const Home = () => {
-  const { categories, errorOnHome, isLoading, arrivalAndTrending } =
-    useContext(CategoryContext);
+  const {
+    categories,
+    errorOnHome,
+    isLoading,
+    setSelectedCategoryId,
+    arrivalAndTrending,
+  } = useContext(CategoryContext);
   //const topCategories = getTopCategories()
 
   return isLoading ? (
@@ -25,6 +30,7 @@ const Home = () => {
             <Link
               to={`/api/category/${filteredCaterory._id}`}
               key={filteredCaterory._id}
+              onClick={() => setSelectedCategoryId(filteredCaterory._id)}
             >
               <div className="category-card">
                 <img
@@ -37,6 +43,7 @@ const Home = () => {
             </Link>
           ))}
       </div>
+
       <div className="category">
         <Carousel />
       </div>
@@ -50,6 +57,7 @@ const Home = () => {
             <Link
               to={`/api/category/${filteredCaterory._id}`}
               key={filteredCaterory._id}
+              onClick={() => setSelectedCategoryId(filteredCaterory._id)}
             >
               <div className="category-card">
                 <img

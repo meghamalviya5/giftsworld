@@ -7,6 +7,7 @@ const CategoryProvider = ({ children }) => {
   const [categories, setCategories] = useState([]);
   const [errorOnHome, setErrorOnHome] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(0);
   const arrivalAndTrending = ["newArrival", "trending"];
 
   const getCategories = async () => {
@@ -35,6 +36,8 @@ const CategoryProvider = ({ children }) => {
         categories,
         errorOnHome,
         isLoading,
+        selectedCategoryId,
+        setSelectedCategoryId,
         arrivalAndTrending,
       }}
     >
