@@ -36,7 +36,7 @@ const GiftList = () => {
         <Filters />
       </div>
       <div className="gifts-show">
-        <div class="gifts-head">
+        <div className="gifts-head">
           <h3>Showing All Products</h3>{" "}
           <span>( Showing {filteredGiftList.length} Products )</span>
         </div>

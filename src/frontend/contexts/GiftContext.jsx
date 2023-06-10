@@ -16,7 +16,12 @@ const GiftProvider = ({ children }) => {
   const [gifts, setGifts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const { categories, arrivalAndTrending } = useContext(CategoryContext);
+  const {
+    categories,
+    arrivalAndTrending,
+    setSelectedCategoryId,
+    selectedCategoryId,
+  } = useContext(CategoryContext);
   // const { wishlist } = useContext(CartWishlistContext);
 
   const getGifts = async () => {
@@ -49,6 +54,14 @@ const GiftProvider = ({ children }) => {
       );
     }
     dispatch({
+      type: "SET_CATEGORY",
+      payload: selectedCategory,
+    });
+    dispatch({
+      type: "UPDATE_SELECTED_FILTERS",
+      payload: selectedCategory,
+    });
+    dispatch({
       type: "SET_GIFTS_BY_CATEGORY",
       payload: { allGiftItems: gifts, selectedCategoryGifts: byCategory },
     });
@@ -60,6 +73,11 @@ const GiftProvider = ({ children }) => {
     originalGiftList: [],
     giftsCategories: [],
     selectedFilters: [],
+    priceFilterValue: 0,
+    categoryFilterValue: "",
+    ratingFilterValue: 0,
+    sortByFilterValue: "",
+    categoryEvent: {},
   };
   //console.log("gifts...in context - ", gifts);
 
@@ -70,30 +88,67 @@ const GiftProvider = ({ children }) => {
     getGiftsByCategory,
     filteredGiftList: state.filteredGiftList,
     selectedFilters: state.selectedFilters,
+    state,
+    dispatch,
+    searchItems: (event) => {
+      dispatch({ type: "SEARCH_ITEMS", payload: event });
+    },
+    clearFilters: async () => {
+      await setSelectedCategoryId(0);
+      console.log("cAtegory ID: ", selectedCategoryId);
+      dispatch({ type: "CLEAR_FILTERS", payload: state.allGifts });
+    },
     setPriceRange: (value) => {
       dispatch({ type: "PRICE_RANGE_FILTER", payload: { rangeValue: value } });
     },
-    sortList: (value) => {
-      dispatch({ type: "SORT_ITEMS", payload: { sortOrder: value } });
-    },
-    setRating: (value) => {
-      dispatch({ type: "RATING_FILTER", payload: { rating: value } });
-    },
-    setCategory: (value) => {
+    setCategory: (value, category) => {
       dispatch({
         type: "CATEGORY_FILTER",
         payload: {
           event: value,
+          categoryName: category,
           gifts: state.allGifts,
           otherCategories: arrivalAndTrending,
         },
       });
     },
-    searchItems: (event) => {
-      dispatch({ type: "SEARCH_ITEMS", payload: event });
+    setRating: (value) => {
+      dispatch({ type: "RATING_FILTER", payload: { rating: value } });
     },
-    clearFilters: () => {
-      dispatch({ type: "CLEAR_FILTERS", payload: state.allGifts });
+    sortList: (value) => {
+      dispatch({ type: "SORT_ITEMS", payload: { sortOrder: value } });
+    },
+
+    combineFilters: (value, category) => {
+      if (state.priceFilterValue > 100) {
+        dispatch({
+          type: "PRICE_RANGE_FILTER",
+          payload: { rangeValue: state.priceFilterValue },
+        });
+      }
+      if (state.categoryFilterValue !== "") {
+        dispatch({
+          type: "CATEGORY_FILTER",
+          payload: {
+            event: value,
+            categoryName: category,
+            gifts: state.allGifts,
+            otherCategories: arrivalAndTrending,
+          },
+        });
+      }
+      if (state.ratingFilterValue !== "") {
+        dispatch({
+          type: "RATING_FILTER",
+          payload: { rating: state.ratingFilterValue },
+        });
+      }
+      if (state.sortByFilterValue !== "") {
+        dispatch({
+          type: "SORT_ITEMS",
+          payload: { sortOrder: state.sortByFilterValue },
+        });
+      }
     },
   };
 

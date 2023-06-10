@@ -6,7 +6,8 @@ import { GiftContext } from "../../contexts/GiftContext";
 
 console.log("Hi in FIlters");
 const Filters = () => {
-  const { categories, selectedCategoryId } = useContext(CategoryContext);
+  const { categories, selectedCategoryId, setSelectedCategoryId } =
+    useContext(CategoryContext);
   const {
     allGifts,
     setPriceRange,
@@ -14,6 +15,9 @@ const Filters = () => {
     setRating,
     setCategory,
     clearFilters,
+    dispatch,
+    state,
+    combineFilters,
   } = useContext(GiftContext);
   const ratings = [4, 3, 2, 1];
 
@@ -21,7 +25,14 @@ const Filters = () => {
     <div className="filter-block">
       <div className="filter-header">
         <div>Filters</div>
-        <Link onClick={() => clearFilters(allGifts)}>Clear</Link>
+        <Link
+          onClick={() => {
+            setSelectedCategoryId(0);
+            clearFilters(allGifts);
+          }}
+        >
+          Clear
+        </Link>
       </div>
       <div className="price-selector">
         <label>Price </label>
@@ -32,7 +43,19 @@ const Filters = () => {
           max="3500"
           step="200"
           width="17rem"
-          onChange={(e) => setPriceRange(e.target.value)}
+          value={state.priceFilterValue}
+          onChange={async (e) => {
+            await dispatch({
+              type: "SET_PRICE_RANGE",
+              payload: e.target.value,
+            });
+            console.log(
+              "after await price range, priceFIlterValue - ",
+              state.priceFilterValue
+            );
+            //combineFilters();
+            setPriceRange(e.target.value);
+          }}
         />
 
         <label>Category</label>
@@ -42,8 +65,18 @@ const Filters = () => {
               <input
                 type="checkbox"
                 id={category._id}
-                value={category.categoryName}
-                onChange={(e) => setCategory(e)}
+                value={state.categoryFilterValue}
+                onChange={async (e) => {
+                  await dispatch({
+                    type: "SET_CATEGORY",
+                    payload: category.categoryName,
+                  });
+                  // await dispatch({
+                  //   type: "SET_CATEGORY_EVENT",
+                  //   payload: e,
+                  // });
+                  setCategory(e, category.categoryName);
+                }}
                 defaultChecked={category._id === selectedCategoryId}
               />
               {category.displayName}
@@ -59,8 +92,15 @@ const Filters = () => {
                 type="radio"
                 id={idx}
                 name="rating"
-                value={rating}
-                onChange={(e) => setRating(e.target.value)}
+                checked={state.ratingFilterValue === rating}
+                value={state.ratingFilterValue}
+                onChange={async (e) => {
+                  await dispatch({
+                    type: "SET_RATING",
+                    payload: rating,
+                  });
+                  setRating(rating);
+                }}
               />
               {rating} Stars & Up
             </label>
@@ -73,8 +113,16 @@ const Filters = () => {
             type="radio"
             id="low-to-high"
             name="sort"
-            value="low-to-high"
-            onChange={(e) => sortList(e.target.value)}
+            checked={state.sortByFilterValue === "low-to-high"}
+            value={state.sortByFilterValue}
+            onChange={async (e) => {
+              await dispatch({
+                type: "SET_SORT_BY",
+                payload: "low-to-high",
+              });
+              //combineFilters();
+              sortList("low-to-high");
+            }}
           />
           Price-Low to High
         </label>
@@ -83,8 +131,16 @@ const Filters = () => {
             type="radio"
             id="high-to-low"
             name="sort"
-            value="high-to-low"
-            onChange={(e) => sortList(e.target.value)}
+            checked={state.sortByFilterValue === "high-to-low"}
+            value={state.sortByFilterValue}
+            onChange={async (e) => {
+              await dispatch({
+                type: "SET_SORT_BY",
+                payload: "high-to-low",
+              });
+              //combineFilters();
+              sortList("high-to-low");
+            }}
           />
           Price-High to Low
         </label>
