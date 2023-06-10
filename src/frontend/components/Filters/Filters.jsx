@@ -77,6 +77,7 @@ const Filters = () => {
                   // });
                   setCategory(e, category.categoryName);
                 }}
+                //checked={state.selectedFilters.includes(category.categoryName)}
                 defaultChecked={category._id === selectedCategoryId}
               />
               {category.displayName}

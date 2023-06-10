@@ -17,6 +17,21 @@ const Signup = () => {
     confirmPassword: "",
     showConfirmPassword: false,
   });
+
+  const handlePassword = () => {
+    setUserData((prevData) => ({
+      ...prevData,
+      showPassword: !userData.showPassword,
+    }));
+  };
+
+  const handleConfirmPassword = () => {
+    setUserData((prevData) => ({
+      ...prevData,
+      showConfirmPassword: !userData.showConfirmPassword,
+    }));
+  };
+
   return (
     <form method="post" onSubmit={handleSignup}>
       <div className="signup-cont">
@@ -45,6 +60,12 @@ const Signup = () => {
                 setUserData({ ...userData, password: e.target.value })
               }
             ></input>
+            <i
+              onClick={handlePassword}
+              className={`fa ${
+                userData.showPassword ? "fa-eye" : "fa-eye-slash"
+              }`}
+            ></i>
           </div>
           <div className="signup-input">
             <label htmlFor="confirm-password">Re-enter your password</label>
@@ -57,6 +78,12 @@ const Signup = () => {
                 setUserData({ ...userData, confirmPassword: e.target.value })
               }
             ></input>
+            <i
+              onClick={handleConfirmPassword}
+              className={`fa ${
+                userData.showConfirmPassword ? "fa-eye" : "fa-eye-slash"
+              }`}
+            ></i>
           </div>
           <div className="signup-input">
             <label>First Name</label>
