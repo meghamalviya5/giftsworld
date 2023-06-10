@@ -13,6 +13,10 @@ export const giftReducer = (state, action) => {
       return {
         ...state,
         filteredGiftList: action.payload,
+        priceFilterValue: 100,
+        categoryFilterValue: "",
+        ratingFilterValue: "",
+        sortByFilterValue: "",
       };
 
     case "PRICE_RANGE_FILTER":
@@ -43,7 +47,7 @@ export const giftReducer = (state, action) => {
       return { ...state, filteredGiftList: sortedList };
 
     case "CATEGORY_FILTER":
-      const category = action.payload.event.target.value;
+      const category = action.payload.categoryName;
       const isChecked = action.payload.event.target.checked;
       let updatedSelectedFilters = [...state.selectedFilters];
 
@@ -72,6 +76,7 @@ export const giftReducer = (state, action) => {
       return {
         ...state,
         filteredGiftList: filteredGiftListBySelectedCategory,
+        originalGiftList: filteredGiftListBySelectedCategory,
         selectedFilters: updatedSelectedFilters,
       };
 
@@ -82,6 +87,44 @@ export const giftReducer = (state, action) => {
           .includes(action.payload.target.value.toLowerCase())
       );
       return { ...state, filteredGiftList: searchedItems };
+
+    case "SET_PRICE_RANGE":
+      return {
+        ...state,
+        priceFilterValue: action.payload,
+      };
+
+    case "SET_CATEGORY":
+      console.log("category -- ", action.payload);
+      return {
+        ...state,
+        categoryFilterValue: action.payload,
+      };
+
+    case "SET_RATING":
+      return {
+        ...state,
+        ratingFilterValue: action.payload,
+      };
+
+    case "SET_SORT_BY":
+      return {
+        ...state,
+        sortByFilterValue: action.payload,
+      };
+
+    case "UPDATE_SELECTED_FILTERS":
+      return {
+        ...state,
+        selectedFilters: [action.payload],
+      };
+
+    case "SET_CATEGORY_EVENT":
+      console.log("categoryEvent -- ", action.payload);
+      return {
+        ...state,
+        categoryEvent: action.payload,
+      };
 
     default:
       return { state };
