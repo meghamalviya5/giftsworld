@@ -7,7 +7,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 
 const NavBar = () => {
   const { cart, wishlist } = useContext(CartWishlistContext);
-  const { searchItems } = useContext(GiftContext);
+  const { state, dispatch } = useContext(GiftContext);
   const { userData, setUserData } = useContext(AuthContext);
 
   const numberOfCartItems = cart?.reduce((count, { qty }) => count + qty, 0);
@@ -29,7 +29,11 @@ const NavBar = () => {
           type="search"
           className="search"
           placeholder="Search"
-          onChange={(event) => searchItems(event)}
+          value={state.filterState.search}
+          onChange={(event) =>
+            dispatch({ type: "SEARCH_ITEMS1", payload: event })
+          }
+          // onChange={(event) => searchItems(event)}
         />
       </div>
       <div className="nav-login">
