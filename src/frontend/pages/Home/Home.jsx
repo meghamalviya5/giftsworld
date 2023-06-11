@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 import Carousel from "../../components/Carousel/Carousel";
 import Spinner from "../../components/Spinner/Spinner";
+import { GiftContext } from "../../contexts/GiftContext";
 
 const Home = () => {
   const {
@@ -13,6 +14,8 @@ const Home = () => {
     setSelectedCategoryId,
     arrivalAndTrending,
   } = useContext(CategoryContext);
+
+  const { dispatch } = useContext(GiftContext);
   //const topCategories = getTopCategories()
 
   return isLoading ? (
@@ -30,7 +33,9 @@ const Home = () => {
             <Link
               to={`/api/category/${filteredCaterory._id}`}
               key={filteredCaterory._id}
-              onClick={() => setSelectedCategoryId(filteredCaterory._id)}
+              onClick={() => {
+                setSelectedCategoryId(filteredCaterory._id);
+              }}
             >
               <div className="category-card">
                 <img

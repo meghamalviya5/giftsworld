@@ -7,7 +7,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 
 const NavBar = () => {
   const { cart, wishlist } = useContext(CartWishlistContext);
-  const { searchItems, state, dispatch } = useContext(GiftContext);
+  const { state, dispatch } = useContext(GiftContext);
   const { userData, setUserData } = useContext(AuthContext);
 
   const numberOfCartItems = cart?.reduce((count, { qty }) => count + qty, 0);

@@ -1,14 +1,6 @@
 export const giftReducer = (state, action) => {
   console.log("in reducer");
   switch (action.type) {
-    case "SET_GIFTS_BY_CATEGORY":
-      return {
-        ...state,
-        allGifts: action.payload.allGiftItems,
-        filteredGiftList: action.payload.selectedCategoryGifts,
-        originalGiftList: action.payload.selectedCategoryGifts,
-      };
-
     // case "CLEAR_FILTERS":
     //   return {
     //     ...state,
@@ -126,6 +118,14 @@ export const giftReducer = (state, action) => {
     //     categoryEvent: action.payload,
     //   };
 
+    case "SET_GIFTS_BY_CATEGORY":
+      return {
+        ...state,
+        allGifts: action.payload.allGiftItems,
+        // filteredGiftList: action.payload.selectedCategoryGifts,
+        originalGiftList: action.payload.selectedCategoryGifts,
+      };
+
     case "SEARCH_ITEMS1":
       return {
         ...state,
@@ -168,33 +168,6 @@ export const giftReducer = (state, action) => {
         },
       };
 
-    // return state.filterState.category.includes(action.payload)
-    //   ? {
-    //       ...state,
-    //       filterState: {
-    //         ...state.filterState,
-    //         category: [...state.filterState.category].filter(
-    //           (item) => item !== action.payload
-    //         ),
-    //       },
-    //     }
-    //   : {
-    //       ...state,
-    //       filterState: {
-    //         ...state.filterState,
-    //         category: [...state.filterState.category, action.payload],
-    //       },
-    //     };
-
-    //const categories =  [...state.filterState.category, action.payload];
-    // return {
-    //   ...state,
-    //   filterState: {
-    //     ...state.filterState,
-    //     category: categories,
-    //   },
-    // };
-
     case "SET_CATEGORY2":
       console.log(state?.filterState?.category, "...in set_category1");
       console.log(action.payload, "...in action payload");
@@ -202,14 +175,16 @@ export const giftReducer = (state, action) => {
         ...state,
         filterState: {
           ...state.filterState,
-          category: [...state.filterState.category, action.payload],
+          category: state.filterState.category.includes(action.payload)
+            ? [...state.filterState.category]
+            : [...state.filterState.category, action.payload],
         },
       };
 
     case "CLEAR_FILTERS1":
       return {
         ...state,
-        filteredGiftList: action.payload,
+        originalGiftList: state.allGifts,
         filterState: {
           search: "",
           priceRange: -1,
