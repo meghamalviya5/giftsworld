@@ -43,19 +43,30 @@ const Filters = () => {
           max="3500"
           step="200"
           width="17rem"
-          value={state.priceFilterValue}
+          value={state.filterState.priceRange}
           onChange={async (e) => {
             await dispatch({
-              type: "SET_PRICE_RANGE",
+              type: "SET_PRICE_RANGE1",
               payload: e.target.value,
             });
-            console.log(
-              "after await price range, priceFIlterValue - ",
-              state.priceFilterValue
-            );
+
             //combineFilters();
-            setPriceRange(e.target.value);
+            // setPriceRange(e.target.value);
           }}
+
+          // value={state.priceFilterValue}
+          // onChange={async (e) => {
+          //   await dispatch({
+          //     type: "SET_PRICE_RANGE",
+          //     payload: e.target.value,
+          //   });
+          //   console.log(
+          //     "after await price range, priceFIlterValue - ",
+          //     state.priceFilterValue
+          //   );
+          //   //combineFilters();
+          //   setPriceRange(e.target.value);
+          // }}
         />
 
         <label>Category</label>
@@ -65,19 +76,30 @@ const Filters = () => {
               <input
                 type="checkbox"
                 id={category._id}
-                value={state.categoryFilterValue}
-                onChange={async (e) => {
-                  await dispatch({
-                    type: "SET_CATEGORY",
+                // value={state.categoryFilterValue}
+                // onChange={async (e) => {
+                //   await dispatch({
+                //     type: "SET_CATEGORY",
+                //     payload: category.categoryName,
+                //   });
+                //   // await dispatch({
+                //   //   type: "SET_CATEGORY_EVENT",
+                //   //   payload: e,
+                //   // });
+                //   setCategory(e, category.categoryName);
+                // }}
+                // //checked={state.selectedFilters.includes(category.categoryName)}
+
+                value={category.categoryName}
+                onChange={() => {
+                  dispatch({
+                    type: "SET_CATEGORY1",
                     payload: category.categoryName,
                   });
-                  // await dispatch({
-                  //   type: "SET_CATEGORY_EVENT",
-                  //   payload: e,
-                  // });
-                  setCategory(e, category.categoryName);
                 }}
-                //checked={state.selectedFilters.includes(category.categoryName)}
+                // checked={state.filterState.category.includes(
+                //   category.categoryName
+                // )}
                 defaultChecked={category._id === selectedCategoryId}
               />
               {category.displayName}
@@ -93,15 +115,24 @@ const Filters = () => {
                 type="radio"
                 id={idx}
                 name="rating"
-                checked={state.ratingFilterValue === rating}
-                value={state.ratingFilterValue}
+                checked={state.filterState.rating === rating}
+                value={state.filterState.rating}
                 onChange={async (e) => {
                   await dispatch({
-                    type: "SET_RATING",
+                    type: "SET_RATING1",
                     payload: rating,
                   });
-                  setRating(rating);
+                  // setRating(rating);
                 }}
+                // checked={state.ratingFilterValue === rating}
+                // value={state.ratingFilterValue}
+                // onChange={async (e) => {
+                //   await dispatch({
+                //     type: "SET_RATING",
+                //     payload: rating,
+                //   });
+                //   setRating(rating);
+                // }}
               />
               {rating} Stars & Up
             </label>
@@ -114,15 +145,25 @@ const Filters = () => {
             type="radio"
             id="low-to-high"
             name="sort"
-            checked={state.sortByFilterValue === "low-to-high"}
-            value={state.sortByFilterValue}
+            //checked={state.sortByFilterValue === "low-to-high"}
+            // value={state.sortByFilterValue}
+            // onChange={async (e) => {
+            //   await dispatch({
+            //     type: "SET_SORT_BY",
+            //     payload: "low-to-high",
+            //   });
+            //   //combineFilters();
+            //   sortList("low-to-high");
+            // }}
+            checked={state.filterState.sortBy === "low-to-high"}
+            value={state.filterState.sortBy}
             onChange={async (e) => {
               await dispatch({
-                type: "SET_SORT_BY",
+                type: "SET_SORT_BY1",
                 payload: "low-to-high",
               });
               //combineFilters();
-              sortList("low-to-high");
+              //  sortList("low-to-high");
             }}
           />
           Price-Low to High
@@ -132,15 +173,25 @@ const Filters = () => {
             type="radio"
             id="high-to-low"
             name="sort"
-            checked={state.sortByFilterValue === "high-to-low"}
-            value={state.sortByFilterValue}
+            // checked={state.sortByFilterValue === "high-to-low"}
+            // value={state.sortByFilterValue}
+            // onChange={async (e) => {
+            //   await dispatch({
+            //     type: "SET_SORT_BY",
+            //     payload: "high-to-low",
+            //   });
+            //   //combineFilters();
+            //   sortList("high-to-low");
+            // }}
+            checked={state.filterState.sortBy === "high-to-low"}
+            value={state.filterState.sortBy}
             onChange={async (e) => {
               await dispatch({
-                type: "SET_SORT_BY",
+                type: "SET_SORT_BY1",
                 payload: "high-to-low",
               });
               //combineFilters();
-              sortList("high-to-low");
+              //sortList("high-to-low");
             }}
           />
           Price-High to Low
