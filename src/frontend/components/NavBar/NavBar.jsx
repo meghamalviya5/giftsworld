@@ -1,13 +1,21 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHeart,
+  faCartShopping,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
+
 import "./NavBar.css";
+import "../../../styles.css";
 import { CartWishlistContext } from "../../contexts/CartWishlistContext";
 import { GiftContext } from "../../contexts/GiftContext";
 import { AuthContext } from "../../contexts/AuthContext";
+import Search from "../Search/Search";
 
 const NavBar = () => {
   const { cart, wishlist } = useContext(CartWishlistContext);
-  const { state, dispatch } = useContext(GiftContext);
   const { userData, setUserData } = useContext(AuthContext);
 
   const numberOfCartItems = cart?.reduce((count, { qty }) => count + qty, 0);
@@ -22,40 +30,51 @@ const NavBar = () => {
   return (
     <div className="nav-bar">
       <div className="nav-item">
-        <Link to="/">Gifts World</Link>
+        <Link to="/" className="links">
+          Gifts World
+        </Link>
       </div>
       <div className="nav-item ">
-        <input
-          type="search"
-          className="search"
-          placeholder="Search"
-          value={state.filterState.search}
-          onChange={(event) =>
-            dispatch({ type: "SEARCH_ITEMS1", payload: event })
-          }
-          // onChange={(event) => searchItems(event)}
-        />
+        <Search />
       </div>
       <div className="nav-login">
         <div className="nav-login-item">
           {userData.isLoggedIn ? (
-            <Link to="/login">
-              <button onClick={handleLogout}>Logout</button>
+            <Link to="/login" className="links">
+              <button className="btn-log btn-log-out" onClick={handleLogout}>
+                Logout
+              </button>
             </Link>
           ) : (
-            <Link to="/login">
-              <button>Login</button>
+            <Link to="/login" className="links">
+              <button className="btn-log btn-log-in">Login</button>
             </Link>
           )}
         </div>
-        <div className="nav-login-item">
-          <Link to="/wishlist">Wishlist({numberOfwishlistItems})</Link>
+        <div className="nav-login-item icon ">
+          {/* {numberOfwishlistItems > 0 ? ( */}
+          <div className="item-count flex-center flex">
+            <span>{numberOfwishlistItems}</span>
+          </div>
+          {/* ) : null} */}
+          <Link to="/wishlist" className="links">
+            <FontAwesomeIcon icon={faHeart} title="Wishlist" />
+          </Link>
         </div>
-        <div className="nav-login-item">
-          <Link to="/cart">Cart({numberOfCartItems})</Link>
+        <div className="nav-login-item icon">
+          {/* {numberOfCartItems > 0 ? ( */}
+          <div className="item-count flex-center flex">
+            <span>{numberOfCartItems}</span>
+          </div>
+          {/* ) : null} */}
+          <Link to="/cart" className="links">
+            <FontAwesomeIcon icon={faCartShopping} title="Cart" />
+          </Link>
         </div>
-        <div className="nav-login-item">
-          <Link to="/profile">Profile</Link>
+        <div className="nav-login-item icon">
+          <Link to="/profile" className="links">
+            <FontAwesomeIcon icon={faUser} title="Profile" />
+          </Link>
         </div>
       </div>
     </div>

@@ -61,38 +61,45 @@ const Address = () => {
   return (
     <div>
       {console.log("in address")}
-      <h3>ADDRESS</h3>
+      <h3 className="details-header">My Addresses</h3>
       {userData.address.map((address) => {
         return (
-          <div>
-            <label htmlFor={address?.id} className="address-list-item">
-              <div className="basic-details">
-                <span className="address-details-checkout">
-                  <p>{address.name} </p>
-                  <p>
-                    {address.address.street +
-                      ", " +
-                      address.address.city +
-                      ", " +
-                      address.address.state +
-                      ", " +
-                      address.address.country}
-                  </p>
-                  <p>Zip Code: {address.zipCode}</p>
-                  <p>Phone: {address.phone}</p>
-                </span>
-              </div>
-            </label>
-            <Link to="/newAddress" onClick={() => editAddress(address)}>
-              <button>Edit</button>
-            </Link>
-
-            <button onClick={() => deleteAddress(address)}>Delete</button>
+          <div className="address-container">
+            <p className="paragraph-md">{address.name} </p>
+            <div>
+              <p className="paragraph-sm">
+                {address.address.street +
+                  ", " +
+                  address.address.city +
+                  ", " +
+                  address.address.state +
+                  ", "}
+              </p>
+              <p className="paragraph-sm">Zip Code: {address.zipCode}</p>
+              <p className="paragraph-sm">{address.address.country}</p>
+              <p className="paragraph-sm">Phone: {address.phone}</p>
+              {/* </span> */}
+            </div>
+            <div className="address-btn">
+              <Link to="/newAddress" onClick={() => editAddress(address)}>
+                <button className="btn outlined-default address-edit">
+                  Edit
+                </button>
+              </Link>
+              <button
+                className="btn outlined-danger address-remove"
+                onClick={() => deleteAddress(address)}
+              >
+                Delete
+              </button>
+            </div>
           </div>
         );
       })}
       <Link to="/newAddress" onClick={addAddress}>
-        <button>Add New Address</button>
+        <button className="btn default address-add false">
+          + Add New Address
+        </button>
       </Link>
       <ToastContainer />
     </div>

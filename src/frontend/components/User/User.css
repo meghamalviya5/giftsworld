@@ -1,0 +1,23 @@
+@import url("../../../styles.css");
+
+.profile-details-main {
+  display: flex;
+  grid-gap: 2rem;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.details-title {
+  font-weight: var(--semibold-weight);
+}
+
+.paragraph-md {
+  font-size: 1rem;
+}
+
+.profile-details-main > div {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 10px;
+  gap: 10px;
+}

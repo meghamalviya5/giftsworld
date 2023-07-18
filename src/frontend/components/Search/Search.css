@@ -1,0 +1,11 @@
+.search-input {
+  width: 25rem;
+  height: 2.5rem;
+  padding-left: 3rem;
+  padding-right: 1rem;
+  border-radius: 2rem;
+}
+
+.search-icon {
+  padding: 0 0.8rem 0 1rem;
+}

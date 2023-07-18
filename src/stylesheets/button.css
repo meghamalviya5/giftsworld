@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+.section-main-text {
+  margin: 2rem 0;
+}
+
+.buttons-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.link-btn {
+  background-color: var(--link);
+}
+
+.btn,
+.link-btn {
+  border: none;
+  background-color: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1.1rem;
+  font-weight: var(--semibold-weight);
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+.btn-icon {
+  background-color: var(--white-color);
+  cursor: pointer;
+}
+
+.btn:hover,
+.link-btn:hover {
+  opacity: 0.8;
+}
+
+.primary {
+  background-color: var(--primary);
+}
+
+.secondary {
+  background-color: var(--secondary);
+}
+
+.success {
+  background-color: var(--success);
+}
+
+.danger {
+  background-color: var(--danger);
+}
+
+.warning {
+  background-color: var(--warning);
+}
+
+.default {
+  background-color: var(--default);
+}
+
+.link-btn {
+  background-color: var(--link);
+}
+
+.outlined-primary {
+  background-color: var(--white-color);
+  color: var(--primary);
+  border: 0.5px solid var(--primary);
+}
+
+.outlined-primary:hover {
+  color: var(--white-color);
+  background-color: var(--primary);
+}
+
+.outlined-secondary {
+  background-color: var(--white-color);
+  color: var(--secondary);
+  border: 0.5px solid var(--secondary);
+}
+
+.outlined-secondary:hover {
+  color: var(--white-color);
+  background-color: var(--secondary);
+}
+
+.outlined-success {
+  background-color: var(--white-color);
+  color: var(--success);
+  border: 0.5px solid var(--success);
+}
+
+.outlined-success:hover {
+  color: var(--white-color);
+  background-color: var(--success);
+}
+
+.outlined-danger {
+  background-color: var(--white-color);
+  color: var(--danger);
+  border: 0.5px solid var(--danger);
+}
+
+.outlined-danger:hover {
+  color: var(--white-color);
+  background-color: var(--danger);
+}
+
+.outlined-danger {
+  background-color: var(--white-color);
+  color: var(--danger);
+  border: 0.5px solid var(--danger);
+}
+
+.outlined-danger:hover {
+  color: var(--white-color);
+  background-color: var(--danger);
+}
+
+.outlined-warning {
+  background-color: var(--white-color);
+  color: var(--warning);
+  border: 0.5px solid var(--warning);
+}
+
+.outlined-warning:hover {
+  color: var(--white-color);
+  background-color: var(--warning);
+}
+
+.outlined-default {
+  background-color: var(--white-color);
+  color: var(--default);
+  border: 0.5px solid var(--default);
+}
+
+.outlined-default:hover {
+  color: var(--white-color);
+  background-color: var(--default);
+}
+
+.outlined {
+  background-color: var(--white-color);
+  color: var(--link);
+  border: 0.5px solid var(--link);
+}
+
+.outlined:hover {
+  background-color: var(--link);
+  color: var(--white-color);
+  border: 0.5px solid var(--link);
+}
+
+.float-btn {
+  color: var(--white-color);
+  border-radius: var(--border-full);
+  padding: 0.8rem 1rem;
+  background-color: var(--main-color);
+  box-shadow: rgba(128, 128, 128, 0.35) 0px 5px 15px;
+}

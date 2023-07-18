@@ -36,6 +36,7 @@ const Home = () => {
               onClick={() => {
                 setSelectedCategoryId(filteredCaterory._id);
               }}
+              className="links"
             >
               <div className="category-card">
                 <img
@@ -63,6 +64,7 @@ const Home = () => {
               to={`/api/category/${filteredCaterory._id}`}
               key={filteredCaterory._id}
               onClick={() => setSelectedCategoryId(filteredCaterory._id)}
+              className="links"
             >
               <div className="category-card">
                 <img

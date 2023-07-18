@@ -1,0 +1,67 @@
+.account-container {
+  background-color: var(--lynx-white-color);
+  flex-grow: 1;
+}
+
+.profile-container {
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* grid-gap: 2rem; */
+  gap: 2rem;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 400px;
+}
+
+.tabs .tab,
+.tabs input[type="radio"] {
+  display: none;
+}
+
+.tabs input[type="radio"]:checked + label {
+  color: var(--white);
+  background: var(--darkBlue);
+}
+
+.tabs label {
+  flex-wrap: wrap;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+  font-weight: var(--regular-weight);
+  transition: background 0.3s ease;
+  width: 50%;
+  text-align: center;
+}
+
+.tabs input[type="radio"]:checked + label + .tab {
+  display: block;
+}
+
+.details-header {
+  font-weight: var(--semibold-weight);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #000;
+  padding-bottom: 5px;
+  text-align: center;
+  width: fit-content;
+}
+.tabs .tab {
+  order: 9;
+  flex-grow: 1;
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+  padding: 20px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.24);
+  border-top: 3px solid var(--main-color);
+}
+
+.btn-danger {
+  background-color: var(--danger);
+}

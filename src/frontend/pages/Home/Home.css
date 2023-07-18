@@ -17,3 +17,8 @@
   height: 6rem;
   border-radius: 7rem;
 }
+
+.links {
+  text-decoration: none;
+  color: black;
+}
