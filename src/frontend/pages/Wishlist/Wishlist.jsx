@@ -25,7 +25,7 @@ const Wishlist = () => {
             </div>
             <div className="card-details">
               <div>{wishlistItem.name}</div>
-              <div className="cart-card-price">
+              <div className="card-price">
                 <h2>
                   &#x20B9;
                   {Math.floor(
@@ -37,7 +37,7 @@ const Wishlist = () => {
                   <s>{wishlistItem.price}</s>
                 </h4>
               </div>
-              <div className="cart-card-price">
+              <div className="card-price">
                 <h4>{wishlistItem.discount}% OFF</h4>
               </div>
             </div>

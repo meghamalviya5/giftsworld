@@ -65,6 +65,7 @@ const Filters = () => {
                   )}
                   // defaultChecked={category._id === selectedCategoryId}
                 />
+                <span className="geekmark"></span>
                 {category.displayName}
               </label>
             </section>

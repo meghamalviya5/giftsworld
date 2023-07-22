@@ -42,17 +42,17 @@
   align-items: flex-start;
 }
 
-.cart-card-price {
+.card-price {
   display: flex;
   gap: 1rem;
-  align-items: baseline;
+  /* align-items: baseline; */
 }
 
 .cart-card-details * {
   margin: 0;
 }
 
-.cart-card-price h4 {
+.card-price .grey {
   color: #9a9a9a;
 }
 

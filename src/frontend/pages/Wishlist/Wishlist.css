@@ -75,9 +75,9 @@
   background-color: #9a9a9a;
 }
 
-.cart-card-price {
+.card-price {
   display: flex;
-  align-items: baseline;
+  /* align-items: baseline; */
 }
 
 .wishlist-empty {

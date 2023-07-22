@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 
 import { CartWishlistContext } from "../../contexts/CartWishlistContext";
 import "./Cart.css";
+import CardPrice from "../../components/CardPrice/CardPrice";
 
 const Cart = () => {
   const {
@@ -31,22 +32,8 @@ const Cart = () => {
               <div className="cart-card-details-cont">
                 <div className="cart-card-details">
                   <h3>{cartItem.name}</h3>
-                  <div>
-                    <div className="cart-card-price">
-                      <h2>
-                        &#x20B9;
-                        {Math.floor(
-                          cartItem.price -
-                            (cartItem.price * cartItem.discount) / 100
-                        )}
-                      </h2>
-                      <h4>
-                        <s>{cartItem.price}</s>
-                      </h4>
-                    </div>
-                    <div className="cart-card-price">
-                      <h4>{cartItem.discount}% OFF</h4>
-                    </div>
+                  <div className="">
+                    <CardPrice gift={cartItem} />
                     <div className="cart-cart-quantity-cont">
                       Quantity:
                       <div className="cart-card-quantity">

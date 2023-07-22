@@ -27,3 +27,7 @@
 
 .filter-category > label {
 }
+
+.filters {
+  accent-color: var(--secondary-color);
+}
