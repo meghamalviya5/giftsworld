@@ -22,10 +22,11 @@
 /* Address Form */
 
 .address-form-container {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255);
   width: 100%;
   position: absolute;
-  top: 15;
+  top: 4.5rem;
+  left: 0;
   height: 100%;
   z-index: 2;
   transition: background ease 0.3s;
@@ -76,4 +77,8 @@
 
 .displayFlex {
   display: flex;
+}
+
+.absolute {
+  position: absolute;
 }

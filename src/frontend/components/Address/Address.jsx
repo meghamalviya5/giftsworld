@@ -7,40 +7,46 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import "./Address.css";
+import { CartWishlistContext } from "../../contexts/CartWishlistContext";
+import NewAddress from "../NewAddress/NewAddress";
 
-const addressObj = {
-  id: 211,
-  name: "Megha",
-  address: {
-    street: "3375 Stroman Run",
-    city: "North Brycen",
-    state: "Nevada",
-    country: "India",
-  },
-  zipCode: "00641",
-  phone: "1-650-866-5445",
-};
+// const addressObj = {
+//   id: 211,
+//   name: "Megha",
+//   address: {
+//     street: "3375 Stroman Run",
+//     city: "North Brycen",
+//     state: "Nevada",
+//     country: "India",
+//   },
+//   zipCode: "00641",
+//   phone: "1-650-866-5445",
+// };
 
 const Address = () => {
   const { userData, setUserData, editAddress } = useContext(AuthContext);
+  const {
+    state: { addressModalStatus },
+    dispatch,
+  } = useContext(CartWishlistContext);
 
-  const populateAddress = () => {
-    const testdata = userData.address.filter((data) => data.id === 211);
-    return userData.email === "123" && testdata.length > 0
-      ? setUserData((prevData) => ({
-          ...prevData,
-          address: [...userData.address],
-        }))
-      : setUserData((prevData) => ({
-          ...prevData,
-          address: [...userData.address, addressObj],
-        }));
-  };
+  // const populateAddress = () => {
+  //   const testdata = userData.address.filter((data) => data.id === 211);
+  //   return userData.email === "123" && testdata.length > 0
+  //     ? setUserData((prevData) => ({
+  //         ...prevData,
+  //         address: [...userData.address],
+  //       }))
+  //     : setUserData((prevData) => ({
+  //         ...prevData,
+  //         address: [...userData.address, addressObj],
+  //       }));
+  // };
 
-  useEffect(() => {
-    console.log("in useEffect-------------");
-    populateAddress();
-  }, []);
+  //useEffect(() => {
+  //console.log("in useEffect-------------");
+  // populateAddress();
+  //}, []);
 
   const addAddress = () => {
     setUserData({ ...userData, saveState: "add" });
@@ -81,7 +87,16 @@ const Address = () => {
               {/* </span> */}
             </div>
             <div className="address-btn">
-              <Link to="/newAddress" onClick={() => editAddress(address)}>
+              <Link
+                // to="/newAddress"
+                onClick={() => {
+                  editAddress(address);
+                  dispatch({
+                    type: "ADDRESS_MODAL_STATUS_UPDATE",
+                    payload: true,
+                  });
+                }}
+              >
                 <button className="btn outlined-default address-edit">
                   Edit
                 </button>
@@ -96,11 +111,21 @@ const Address = () => {
           </div>
         );
       })}
-      <Link to="/newAddress" onClick={addAddress}>
+      <Link
+        //to="/newAddress"
+        onClick={() => {
+          addAddress();
+          dispatch({
+            type: "ADDRESS_MODAL_STATUS_UPDATE",
+            payload: true,
+          });
+        }}
+      >
         <button className="btn default address-add false">
           + Add New Address
         </button>
       </Link>
+      {addressModalStatus ? <NewAddress /> : null}
       <ToastContainer />
     </div>
   );

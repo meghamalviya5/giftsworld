@@ -30,7 +30,7 @@ const NavBar = () => {
   return (
     <div className="nav-bar">
       <div className="nav-item">
-        <Link to="/" className="links">
+        <Link to="/" className="flex brand-name">
           Gifts World
         </Link>
       </div>
@@ -40,40 +40,52 @@ const NavBar = () => {
       <div className="nav-login">
         <div className="nav-login-item">
           {userData.isLoggedIn ? (
-            <Link to="/login" className="links">
+            <Link to="/login" className="flex">
               <button className="btn-log btn-log-out" onClick={handleLogout}>
                 Logout
               </button>
             </Link>
           ) : (
-            <Link to="/login" className="links">
+            <Link to="/login" className="flex">
               <button className="btn-log btn-log-in">Login</button>
             </Link>
           )}
         </div>
-        <div className="nav-login-item icon ">
+        <div className="nav-login-item nav-icon ">
           {/* {numberOfwishlistItems > 0 ? ( */}
           <div className="item-count flex-center flex">
-            <span>{numberOfwishlistItems}</span>
+            <span className="count-text">{numberOfwishlistItems}</span>
           </div>
           {/* ) : null} */}
-          <Link to="/wishlist" className="links">
-            <FontAwesomeIcon icon={faHeart} title="Wishlist" />
+          <Link to="/wishlist" className="flex">
+            <FontAwesomeIcon
+              className="fw-icon"
+              icon={faHeart}
+              title="Wishlist"
+            />
           </Link>
         </div>
-        <div className="nav-login-item icon">
+        <div className="nav-login-item nav-icon">
           {/* {numberOfCartItems > 0 ? ( */}
           <div className="item-count flex-center flex">
-            <span>{numberOfCartItems}</span>
+            <span className="count-text">{numberOfCartItems}</span>
           </div>
           {/* ) : null} */}
-          <Link to="/cart" className="links">
-            <FontAwesomeIcon icon={faCartShopping} title="Cart" />
+          <Link to="/cart" className="flex">
+            <FontAwesomeIcon
+              className="fw-icon"
+              icon={faCartShopping}
+              title="Cart"
+            />
           </Link>
         </div>
-        <div className="nav-login-item icon">
-          <Link to="/profile" className="links">
-            <FontAwesomeIcon icon={faUser} title="Profile" />
+        <div className="nav-login-item nav-icon">
+          <Link to="/profile" className="flex">
+            <FontAwesomeIcon
+              className="fw-icon"
+              icon={faUser}
+              title="Profile"
+            />
           </Link>
         </div>
       </div>

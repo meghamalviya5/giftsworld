@@ -1,14 +1,3 @@
-.gift-list-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 1rem 0.5rem;
-  /* align-items: center; */
-  width: 15rem;
-  height: 25rem;
-  position: relative;
-}
-
 .gift-detail-image {
   width: 30rem;
   height: 30rem;
@@ -27,29 +16,8 @@
   cursor: pointer;
 }
 
-/* .red-fav:hover {
-  color: blue;
-} */
-
 .card-badge .red-fav {
-  color: rgb(8, 8, 8);
-}
-
-.gift-list-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 1rem 0.5rem;
-  /* align-items: center; */
-  width: 15rem;
-  height: 25rem;
-  position: relative;
-}
-
-.gift-details {
-  /* display: flex; */
-  flex-direction: column;
-  padding: 1rem 1rem;
+  color: red;
 }
 
 .gift-image {
@@ -57,13 +25,6 @@
   align-items: center;
   width: 15rem;
   height: 15rem;
-}
-.gift-image,
-.gift-list-item,
-.card-badge,
-.gift-details {
-  display: flex;
-  align-items: center;
 }
 
 .card-btn {

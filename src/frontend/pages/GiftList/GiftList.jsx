@@ -41,39 +41,49 @@ const GiftList = () => {
         <div className="gift-list">
           {filteredGiftList?.map((gift) => (
             <div key={gift._id} className="gift-list-item">
-              <div className="card-header">
-                <Link to={`/giftDetails/${gift._id}`}>
-                  <img className="gift-image" src={gift.image} alt="" />
-                </Link>
-                <span className="card-badge">
-                  {isWishlisted(gift._id) ? (
-                    <MaterialIcon
-                      icon="favorite"
-                      onClick={() => removeFromWishlist(gift._id)}
-                    />
-                  ) : (
-                    <MaterialIcon
-                      icon="favorite_border"
-                      onClick={() => addToWishlist(gift)}
-                    />
-                  )}
-                </span>
-              </div>
-              <Link to={`/giftDetails/${gift._id}`}>
-                <div className="gift-details">
-                  <p>{gift.name}</p>
-                  <b>&#x20B9; {gift.price}</b>
+              <div className="flex flex-column">
+                <div className="card-header">
+                  <div>
+                    <Link to={`/giftDetails/${gift._id}`}>
+                      <img className="gift-image" src={gift.image} alt="" />
+                    </Link>
+                    <span className="card-badge">
+                      {isWishlisted(gift._id) ? (
+                        <MaterialIcon
+                          icon="favorite"
+                          className="red-fav"
+                          onClick={() => removeFromWishlist(gift._id)}
+                        />
+                      ) : (
+                        <MaterialIcon
+                          icon="favorite_border"
+                          className="red-fav"
+                          onClick={() => addToWishlist(gift)}
+                        />
+                      )}
+                    </span>
+                  </div>
                 </div>
-              </Link>
-              {findInCart(gift._id) ? (
-                <Link to="/cart">
-                  <button className="card-btn">Go To Cart</button>
-                </Link>
-              ) : (
-                <button className="card-btn" onClick={() => addToCart(gift)}>
-                  Add To Cart
-                </button>
-              )}
+                <div>
+                  <Link to={`/giftDetails/${gift._id}`}>
+                    <div className="gift-details">
+                      <p className="gift-name">{gift.name}</p>
+                      <b>&#x20B9; {gift.price}</b>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+              <div>
+                {findInCart(gift._id) ? (
+                  <Link to="/cart">
+                    <button className="card-btn">Go To Cart</button>
+                  </Link>
+                ) : (
+                  <button className="card-btn" onClick={() => addToCart(gift)}>
+                    Add To Cart
+                  </button>
+                )}
+              </div>
             </div>
           ))}
         </div>

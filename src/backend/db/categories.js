@@ -45,7 +45,7 @@ export const categories = [
     displayName: "Trending",
     categoryName: "trending",
     image:
-      "https://www.chch.com/wp-content/uploads/2022/10/TrendingNowML_000010.png",
+      "https://thumbs.dreamstime.com/b/trending-now-sign-illustrated-trending-now-sign-red-circle-96084162.jpg",
     description:
       "Non-fiction is writing that gives information or describes real events, rather than telling a story.",
   },

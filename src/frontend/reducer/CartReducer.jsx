@@ -15,6 +15,9 @@ export const cartReducer = (state, action) => {
     case "CART_ITEM_QUANTITY_DECREMENT":
       return { ...state, cart: action.payload };
 
+    case "ADDRESS_MODAL_STATUS_UPDATE":
+      return { ...state, addressModalStatus: action.payload };
+
     default:
       return state;
   }

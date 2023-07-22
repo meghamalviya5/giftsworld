@@ -467,6 +467,18 @@ h6 {
   display: flex;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row-gap-s {
+  row-gap: var(--s-size);
+}
+
+.flex-row-gap-m {
+  row-gap: var(--m-size);
+}
+
 .flex-row {
   flex-flow: row wrap;
 }

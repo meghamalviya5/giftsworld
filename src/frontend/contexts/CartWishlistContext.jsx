@@ -15,7 +15,11 @@ export const CartWishlistContext = createContext();
 const CartWishlistProvider = ({ children }) => {
   const { allGifts } = useContext(GiftContext);
   const [wishlist, setWishlist] = useState([]);
-  const initialState = { cart: [] };
+
+  const initialState = {
+    cart: [],
+    addressModalStatus: false,
+  };
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
   const numberOfCartItems = state.cart.reduce(
@@ -119,6 +123,8 @@ const CartWishlistProvider = ({ children }) => {
     state.cart.find((cartItem) => cartItem._id === itemId);
 
   const valueProp = {
+    state,
+    dispatch,
     findInWishlist,
     wishlist,
     findInCart,

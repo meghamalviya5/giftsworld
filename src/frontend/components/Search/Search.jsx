@@ -10,7 +10,7 @@ const Search = () => {
 
   return (
     <label className="relative flex flex-align-center">
-      <FontAwesomeIcon icon={faSearch} className="search-icon absolute" />
+      <FontAwesomeIcon icon={faSearch} className="search-icon" />
       <input
         type="search"
         className="search-input"

@@ -23,7 +23,7 @@ const Home = () => {
   ) : errorOnHome ? (
     <h2>{errorOnHome}</h2>
   ) : (
-    <div>
+    <div className="pt-m pb-m">
       <div className="category">
         {categories
           .filter(
@@ -39,12 +39,14 @@ const Home = () => {
               className="links"
             >
               <div className="category-card">
-                <img
-                  className="category-img"
-                  src={filteredCaterory.image}
-                  alt=""
-                />
-                {filteredCaterory.displayName}
+                <div>
+                  <img
+                    className="category-img"
+                    src={filteredCaterory.image}
+                    alt=""
+                  />
+                </div>
+                <div className="card-title">{filteredCaterory.displayName}</div>
               </div>
             </Link>
           ))}
@@ -72,7 +74,7 @@ const Home = () => {
                   src={filteredCaterory.image}
                   alt=""
                 />
-                {filteredCaterory.displayName}
+                <div className="card-title">{filteredCaterory.displayName}</div>
               </div>
             </Link>
           ))}
