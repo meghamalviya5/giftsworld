@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Login.css";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { setEmail, setPassword, userData, setUserData } =
@@ -136,21 +137,16 @@ const Login = () => {
             {"Login"}
           </button>
         )} */}
-        <button
-          className="card-button active-button"
-          onClick={() => handleLogin("test")}
-        >
+        <button className="card-button" onClick={() => handleLogin("test")}>
           Login as Test User
         </button>
-        <button
-          className="card-button active-button"
-          onClick={() => handleLogin("")}
-        >
+        <button className="card-button" onClick={() => handleLogin("")}>
           Login
         </button>
-        <a className="create-new-account" href="/signup">
+        <Link className="create-new-account" to="/signup">
           Create New Account
-        </a>
+          <i className="fa fa-solid fa-chevron-up fa-rotate-90"></i>
+        </Link>
       </div>
       <ToastContainer />
     </div>

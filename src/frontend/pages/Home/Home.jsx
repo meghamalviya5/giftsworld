@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 import Carousel from "../../components/Carousel/Carousel";
 import Spinner from "../../components/Spinner/Spinner";
-import { GiftContext } from "../../contexts/GiftContext";
 
 const Home = () => {
   const {
@@ -15,15 +14,12 @@ const Home = () => {
     arrivalAndTrending,
   } = useContext(CategoryContext);
 
-  const { dispatch } = useContext(GiftContext);
-  //const topCategories = getTopCategories()
-
   return isLoading ? (
     <Spinner />
   ) : errorOnHome ? (
     <h2>{errorOnHome}</h2>
   ) : (
-    <div className="pt-m pb-m">
+    <div className="pt-s pb-s">
       <div className="category">
         {categories
           .filter(
@@ -39,7 +35,7 @@ const Home = () => {
               className="links"
             >
               <div className="category-card">
-                <div>
+                <div className="item-img">
                   <img
                     className="category-img"
                     src={filteredCaterory.image}
@@ -69,11 +65,13 @@ const Home = () => {
               className="links"
             >
               <div className="category-card">
-                <img
-                  className="category-img"
-                  src={filteredCaterory.image}
-                  alt=""
-                />
+                <div className="item-img">
+                  <img
+                    className="category-img"
+                    src={filteredCaterory.image}
+                    alt=""
+                  />
+                </div>
                 <div className="card-title">{filteredCaterory.displayName}</div>
               </div>
             </Link>

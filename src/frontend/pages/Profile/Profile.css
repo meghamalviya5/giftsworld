@@ -25,8 +25,8 @@
 }
 
 .tabs input[type="radio"]:checked + label {
-  color: var(--white);
-  background: var(--darkBlue);
+  color: var(--white-color);
+  background: var(--secondary-color);
 }
 
 .tabs label {

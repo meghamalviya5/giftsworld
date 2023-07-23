@@ -103,9 +103,7 @@ const Checkout = () => {
               </p>
             </div>
             <Link to="/checkout">
-              <button className="cart-card-button active-button">
-                Place Order
-              </button>
+              <button className="card-button">Place Order</button>
             </Link>
           </div>
         </div>

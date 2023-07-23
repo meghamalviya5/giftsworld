@@ -5,12 +5,12 @@ import {
   faHeart,
   faCartShopping,
   faUser,
+  faCompass,
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./NavBar.css";
 import "../../../styles.css";
 import { CartWishlistContext } from "../../contexts/CartWishlistContext";
-import { GiftContext } from "../../contexts/GiftContext";
 import { AuthContext } from "../../contexts/AuthContext";
 import Search from "../Search/Search";
 
@@ -37,6 +37,9 @@ const NavBar = () => {
       <div className="nav-item ">
         <Search />
       </div>
+      {/* <div className="nav-item">
+        <FontAwesomeIcon icon={faCompass} />
+      </div> */}
       <div className="nav-login">
         <div className="nav-login-item">
           {userData.isLoggedIn ? (
@@ -52,11 +55,9 @@ const NavBar = () => {
           )}
         </div>
         <div className="nav-login-item nav-icon ">
-          {/* {numberOfwishlistItems > 0 ? ( */}
           <div className="item-count flex-center flex">
             <span className="count-text">{numberOfwishlistItems}</span>
           </div>
-          {/* ) : null} */}
           <Link to="/wishlist" className="flex">
             <FontAwesomeIcon
               className="fw-icon"
@@ -66,11 +67,9 @@ const NavBar = () => {
           </Link>
         </div>
         <div className="nav-login-item nav-icon">
-          {/* {numberOfCartItems > 0 ? ( */}
           <div className="item-count flex-center flex">
             <span className="count-text">{numberOfCartItems}</span>
           </div>
-          {/* ) : null} */}
           <Link to="/cart" className="flex">
             <FontAwesomeIcon
               className="fw-icon"

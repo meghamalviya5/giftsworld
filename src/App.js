@@ -18,7 +18,7 @@ import Checkout from "./frontend/pages/Checkout/Checkout";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="flex flex-column">
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />

@@ -129,9 +129,7 @@ const Cart = () => {
                 You will save ₹{totalDiscount} on this order
               </p>
               <Link to="/checkout">
-                <button className="cart-card-button active-button">
-                  Checkout
-                </button>
+                <button className="card-button">Checkout</button>
               </Link>
             </div>
           </div>
