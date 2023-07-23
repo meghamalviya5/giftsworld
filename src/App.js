@@ -14,11 +14,17 @@ import Signup from "./frontend/pages/Signup/Signup";
 import Profile from "./frontend/pages/Profile/Profile";
 import NewAddress from "./frontend/components/NewAddress/NewAddress";
 import Checkout from "./frontend/pages/Checkout/Checkout";
+import { useContext } from "react";
+import { GiftContext } from "./frontend/contexts/GiftContext";
+import Spinner from "./frontend/components/Spinner/Spinner";
 
 function App() {
+  const { isLoading } = useContext(GiftContext);
+
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="flex flex-column">
+        {isLoading && <Spinner />}
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />

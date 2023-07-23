@@ -6,8 +6,7 @@ import { GiftContext } from "../../contexts/GiftContext";
 
 console.log("Hi in FIlters");
 const Filters = () => {
-  const { categories, selectedCategoryId, setSelectedCategoryId } =
-    useContext(CategoryContext);
+  const { categories } = useContext(CategoryContext);
   const { allGifts, clearFilters, dispatch, state } = useContext(GiftContext);
   const ratings = [4, 3, 2, 1];
 
@@ -27,6 +26,10 @@ const Filters = () => {
       <div className="flex flex-column flex-row-gap-s filters">
         <div className="flex filter-category">
           <label className="fw-bold">Price </label>
+          <div className="flex flex-space-between">
+            <p>100</p>
+            <p>3500</p>
+          </div>
           <input
             type="range"
             id="price-filter"

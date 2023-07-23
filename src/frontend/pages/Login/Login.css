@@ -14,7 +14,9 @@
   align-items: center;
   background-color: #fff;
   padding-inline: 4rem;
+  padding-block-start: 2rem;
   padding-block-end: 4rem;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
   gap: 1rem;
 }
 
@@ -61,12 +63,13 @@
   padding: 0.5rem;
   width: 100%;
   border: none;
-  font-family: Poppins;
-  font-style: normal;
+  border-radius: 0.5rem;
+  /* font-family: Poppins;
+  font-style: normal; */
   font-weight: 600;
-  background-color: #9a9a9a;
+  background-color: var(--secondary-color);
 }
 
-.active-button {
+/* .active-button {
   background-color: #3b82f6;
-}
+} */

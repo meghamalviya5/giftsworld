@@ -4,6 +4,7 @@
   width: 20rem;
   height: 100%;
   padding: 2rem 3rem;
+  border-right: 1px solid black;
 }
 
 .filter-header {

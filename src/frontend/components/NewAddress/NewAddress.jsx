@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router";
 import "./NewAddress.css";
 import { AuthContext } from "../../contexts/AuthContext";
 
@@ -15,8 +14,6 @@ const NewAddress = () => {
     useContext(AuthContext);
 
   const { dispatch } = useContext(CartWishlistContext);
-
-  const navigate = useNavigate();
 
   const handleNewAddressSubmit = (e) => {
     e.preventDefault();
@@ -60,7 +57,7 @@ const NewAddress = () => {
       phone: "",
     });
     toast.success("Address added successfully!");
-    //navigate("/profile");
+
     dispatch({ type: "ADDRESS_MODAL_STATUS_UPDATE", payload: false });
   };
 
@@ -116,7 +113,7 @@ const NewAddress = () => {
             : handleUpdateAddresss
         }
       >
-        <h4>ADD NEW ADDRESS</h4>
+        <h4>{userData.saveState === "add" ? "ADD NEW " : "EDIT "}ADDRESS</h4>
         <div className="form-input">
           <input
             placeholder="Enter Name"

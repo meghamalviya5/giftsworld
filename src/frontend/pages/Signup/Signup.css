@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: calc(100vh - 4.5rem);
   width: 100%;
   background: #f7f7f7;
 }
@@ -18,11 +18,18 @@
   width: 400px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   background-color: #fff;
-  padding-inline: 4rem;
+  padding-block-start: 2rem;
   padding-block-end: 4rem;
+  padding-inline: 4rem;
   gap: 1rem;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.input-container {
+  width: 100%;
 }
 
 .signup-input {
