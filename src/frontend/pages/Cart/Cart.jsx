@@ -21,9 +21,12 @@ const Cart = () => {
 
   return (
     <div className="cart-cont">
-      {cart.length ? (
-        <div className="flex cart-main-container">
-          <h3>My Cart({numberOfCartItems})</h3>
+      <div className="flex cart-main-container">
+        <h3>
+          My Cart
+          {cart?.length > 0 ? `(${cart?.length})` : ""}
+        </h3>
+        {cart.length ? (
           <div className="cart-details">
             <div className="cart-items-card-container">
               {cart.map((cartItem) => (
@@ -132,13 +135,13 @@ const Cart = () => {
               </Link>
             </div>
           </div>
-          <ToastContainer />
-        </div>
-      ) : (
-        <div className="cart-empty">
-          <h3>Your Cart is Empty!!</h3>
-        </div>
-      )}
+        ) : (
+          <div className="cart-empty">
+            <h3>Your Cart is Empty!!</h3>
+          </div>
+        )}
+        <ToastContainer />
+      </div>
     </div>
   );
 };
