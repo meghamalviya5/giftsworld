@@ -18,7 +18,7 @@ const Login = () => {
 
   const addressObj = {
     id: 211,
-    name: "Megha",
+    name: "Megha Malviya",
     address: {
       street: "3375 Stroman Run",
       city: "North Brycen",

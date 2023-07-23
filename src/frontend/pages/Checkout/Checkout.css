@@ -24,6 +24,16 @@ h3 {
   width: 30rem;
 }
 
+.select-input {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.radio-input-address {
+  margin-right: 10px;
+}
+
 .address-checkout-container {
   padding: 1rem 4rem 1rem 2rem;
   border-bottom: 1px solid var(--lightGrey);
@@ -44,14 +54,13 @@ h3 {
   width: 30rem;
 }
 
+.border-header,
+.checkout-calculate {
+  padding: 0.5rem 0;
+}
 .border-header {
   border-bottom: 1px solid var(--lightGrey);
   border-top: 1px solid var(--lightGrey);
-  padding: 0.5rem 0;
-}
-
-.checkout-calculate {
-  padding: 0.5rem 0;
 }
 
 .checkout-calculate ul {
@@ -61,8 +70,14 @@ h3 {
 .checkout-details ul {
   display: flex;
   justify-content: space-between;
+  grid-gap: 5rem;
   gap: 5rem;
   align-items: center;
+}
+.checkout-item-header > p,
+.order-header {
+  font-weight: var(--semibold-weight);
+  padding-bottom: 1rem;
 }
 
 .checkout-btn {

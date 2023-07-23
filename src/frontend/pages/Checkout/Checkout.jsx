@@ -17,57 +17,66 @@ const Checkout = () => {
 
   return (
     <div>
-      <div className="checkout-main-container flex-center">
+      <div className="checkout-main-container flex flex-center">
         <h3>CHECKOUT </h3>
         <div className="checkout-manage">
           <div className="checkout-manage-item ">
-            <div className="address-checkout-container ">
-              {userData.address.map((address, index) => {
-                return (
+            {userData.address.map((address, index) => {
+              return (
+                <div className="address-checkout-container ">
+                  <label htmlFor={address.id} className="select-input">
+                    <input
+                      type="radio"
+                      id={address.id}
+                      name="address-input"
+                      className="radio-input-address"
+                      defaultChecked={index === 0}
+                      onChange={() => setUserDeliveryAddress(address)}
+                    />
+                    <p className="txt-s">{address.name} </p>
+                  </label>
                   <div>
-                    <label htmlFor={address.id} className="address-list-item">
-                      <div className="basic-details">
-                        <input
-                          type="radio"
-                          id={address.id}
-                          name="address-input"
-                          defaultChecked={index === 0}
-                          onChange={() => setUserDeliveryAddress(address)}
-                        />
-                        <span className="address-details-checkout">
-                          <p>{address.name} </p>
-                          <p>
-                            {address.address.street +
-                              ", " +
-                              address.address.city +
-                              ", " +
-                              address.address.state +
-                              ", " +
-                              address.address.country}
-                          </p>
-                          <p>Zip Code: {address.zipCode}</p>
-                          <p>Phone: {address.phone}</p>
-                        </span>
-                      </div>
-                    </label>
+                    <span className="address-details-checkout">
+                      <p>
+                        {address.address.street +
+                          ", " +
+                          address.address.city +
+                          ", " +
+                          address.address.state +
+                          ", " +
+                          address.address.country}
+                      </p>
+                      <p>Zip Code: {address.zipCode}</p>
+                      <p>Phone: {address.phone}</p>
+                    </span>
                   </div>
-                );
-              })}
-            </div>
+                </div>
+              );
+            })}
           </div>
 
-          <div className="cart-price-details-card">
-            <h4>ORDER DETAILS</h4>
-            <hr />
-            {cart.map((cartItem) => (
-              <div className="cart-price-flex">
-                <p>{cartItem.name}</p>
-                <p>{cartItem.qty}</p>
-              </div>
-            ))}
+          <div className="checkout-details">
+            <h4 className="txt-center border-header">ORDER DETAILS</h4>
+            {/* <hr /> */}
+            <div>
+              <li>
+                <ul className="order-header">
+                  <p>Item</p>
+                  <p>Quantity</p>
+                </ul>
+              </li>
+              {cart.map((cartItem) => (
+                <li>
+                  <ul>
+                    <p>{cartItem.name}</p>
+                    <p>{cartItem.qty}</p>
+                  </ul>
+                </li>
+              ))}
+            </div>
 
-            <h4>PRICE DETAILS</h4>
-            <hr />
+            <h4 className="txt-center border-header">PRICE DETAILS</h4>
+
             <div className="cart-price-flex">
               <p>Price ({numberOfCartItems} item)</p>
               <p>₹{totalPrice}</p>
@@ -80,14 +89,14 @@ const Checkout = () => {
               <p>Delivery Charges</p>
               <p>FREE</p>
             </div>
-            <hr />
+
             <div className="cart-price-flex">
               <h4>TOTAL AMOUNT</h4>
               <h4>₹{totalPrice - totalDiscount}</h4>
             </div>
-            <hr />
-            <h4>DELIVER TO</h4>
-            <hr />
+
+            <h4 className="txt-center border-header">DELIVER TO</h4>
+
             <div className="cart-price-flex">
               <p>
                 <AddressDetails address={userDeliveryAddress} />

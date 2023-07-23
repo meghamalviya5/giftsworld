@@ -66,6 +66,11 @@ h6 {
   line-height: var(--m-size);
 }
 
+.txt-sm {
+  font-size: var(--sm-size);
+  line-height: var(--s-size);
+}
+
 .txt-xs {
   font-size: var(--xs-size);
   line-height: var(--s-size);
