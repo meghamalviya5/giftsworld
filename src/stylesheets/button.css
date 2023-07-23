@@ -13,10 +13,6 @@
   gap: 1rem;
 }
 
-.link-btn {
-  background-color: var(--link);
-}
-
 .btn,
 .link-btn {
   border: none;

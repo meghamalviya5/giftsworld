@@ -14,55 +14,66 @@ import CardPrice from "../../components/CardPrice/CardPrice";
 
 const GiftList = () => {
   const { categoryId } = useParams();
-  const { getGiftsByCategory, filteredGiftList, isLoading, error } =
-    useContext(GiftContext);
+  const {
+    getGiftsByCategory,
+    filteredGiftList,
+    isLoading,
+    setIsLoading,
+    error,
+  } = useContext(GiftContext);
 
   useEffect(() => {
+    console.log("isLoading: ", isLoading);
+    window.scrollTo(0, 0);
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
     getGiftsByCategory(categoryId);
   }, []);
 
-  return isLoading ? (
-    <Spinner />
-  ) : error ? (
-    <h2>{error}</h2>
-  ) : (
+  return (
     <div className="filter-gifts">
       <div>
         <Filters />
       </div>
       <div className="gifts-show">
         <div className="gifts-head">
-          <h3>Showing All Products</h3>{" "}
+          <h3>Showing All Products</h3>
           <span>( Showing {filteredGiftList.length} Products )</span>
         </div>
         <div className="gift-list">
-          {filteredGiftList?.map((gift) => (
-            <div key={gift._id} className="gift-list-item">
-              <div className="flex flex-column">
-                <div className="card-header">
+          {filteredGiftList?.length > 0 ? (
+            filteredGiftList?.map((gift) => (
+              <div key={gift._id} className="gift-list-item">
+                <div className="flex flex-column">
+                  <div className="card-header">
+                    <div>
+                      <Link to={`/giftDetails/${gift._id}`}>
+                        <img
+                          className="gift-image"
+                          src={gift.image}
+                          alt="gift-image"
+                        />
+                      </Link>
+                      <CardBadge gift={gift} />
+                    </div>
+                  </div>
                   <div>
                     <Link to={`/giftDetails/${gift._id}`}>
-                      <img
-                        className="gift-image"
-                        src={gift.image}
-                        alt="gift-image"
-                      />
+                      <div className="gift-details">
+                        <p className="gift-name">{gift.name}</p>
+                      </div>
                     </Link>
-                    <CardBadge gift={gift} />
                   </div>
+                  <CardPrice gift={gift} />
                 </div>
-                <div>
-                  <Link to={`/giftDetails/${gift._id}`}>
-                    <div className="gift-details">
-                      <p className="gift-name">{gift.name}</p>
-                    </div>
-                  </Link>
-                </div>
-                <CardPrice gift={gift} />
+                <CartButton gift={gift} />
               </div>
-              <CartButton gift={gift} />
-            </div>
-          ))}
+            ))
+          ) : (
+            <div className="fw-bold txt-m pt-xl pl-s">Product Not Found!!</div>
+          )}
         </div>
       </div>
       <ToastContainer />

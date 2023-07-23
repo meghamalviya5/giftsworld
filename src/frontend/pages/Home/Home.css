@@ -4,12 +4,13 @@
 }
 
 .category-card {
-  width: 8rem;
+  width: 9rem;
   height: 8.5rem;
   margin-bottom: 0.5rem;
   display: flex;
   flex-direction: column;
   /* border: 1px solid green; */
+  /* border-radius: 0.5rem; */
   align-items: center;
   padding: 0.3rem;
   box-shadow: 0 3px 7px 0 var(--primary-color);
@@ -22,18 +23,18 @@
   box-shadow: 0 3px 7px 0 var(--primary-color);
 }
 .card-title {
-  padding: 1rem;
+  padding: 0.3rem;
   font-weight: bold;
 }
 
 .category-img {
-  width: 6rem;
-  height: 6rem;
+  width: 6.5rem;
+  height: 6.5rem;
   border-radius: 7rem;
 }
 
 /* .item-img {
-  -webkit-filter: drop-shadow(0 0 0.125rem var(--secondary-color));
+  -webkit-filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 0.5));
 } */
 
 .links {

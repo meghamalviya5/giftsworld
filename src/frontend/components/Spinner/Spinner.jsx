@@ -1,22 +1,16 @@
 import React from "react";
-import ClipLoader from "react-spinners/ClipLoader";
+import PulseLoader from "react-spinners/PulseLoader";
+import "./Spinner.css";
 
 const Spinner = () => {
   return (
-    <div
-      style={{
-        // width: "100px",
-        // display: "flex",
-        // alignItems: "center",
-        // justifyContent: "center",
-        // margin: "auto",
-        position: "absolute",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-      }}
-    >
-      <ClipLoader color="#52bfd9" size={100} />
+    <div className="loader">
+      {/* <ClipLoader color="#52bfd9" size={100} /> */}
+      {/* <HashLoader color="#36d7b7" size={100} /> */}
+      {/* <SyncLoader color="#36d7b7" size={100} /> */}
+      {/* <RingLoader color="#be123c" size={100} /> */}
+
+      <PulseLoader color="#e11d48" size={25} />
     </div>
   );
 };

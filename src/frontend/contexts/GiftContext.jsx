@@ -145,6 +145,8 @@ const GiftProvider = ({ children }) => {
     selectedFilters: state.selectedFilters,
     state,
     dispatch,
+    isLoading,
+    setIsLoading,
     clearFilters: async () => {
       await setSelectedCategoryId((prevValue) => 0);
       console.log("cAtegory ID: ", selectedCategoryId);

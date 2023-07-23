@@ -10,7 +10,6 @@ import CardPrice from "../../components/CardPrice/CardPrice";
 
 const GiftDetails = () => {
   const { giftId } = useParams();
-  const { wishlist } = useContext(CartWishlistContext);
   const { filteredGiftList } = useContext(GiftContext);
   const { findInWishlist, addToWishlist } = useContext(CartWishlistContext);
   const { addToCart, findInCart } = useContext(CartWishlistContext);
@@ -18,38 +17,38 @@ const GiftDetails = () => {
 
   //find gift by id
   const giftByID = filteredGiftList.find((gift) => gift._id === Number(giftId));
-  const { _id, image, name, reviews, rating, price } = giftByID;
+  const { _id, image, name, reviews, rating } = giftByID;
 
   return (
     <div className="single-card-container flex flex-center">
       <div className="single-card flex-center">
         <div className="single-card-left">
           <img src={image} className="single-card-img" alt="" />
-          {/* <CardBadge gift={giftByID} /> */}
         </div>
         <div className="single-card-right">
           <div className="single-card-title">
             <h3 className="single-card-title-header">{name}</h3>
             <span className="star-ratings">
               {rating}
-              <i class="fa fa-star"></i>
+              <i className="fa fa-star"></i>
             </span>
           </div>
 
           <span>({reviews} Reviews)</span>
           <CardPrice gift={giftByID} />
-          <p class="paragraph-sm msg">
-            <i class="fa fa-bolt" aria-hidden="true"></i> Hurry , Only Few Left
-            !
+          <p className="paragraph-sm msg">
+            <i className="fa fa-bolt" aria-hidden="true"></i> Hurry , Only Few
+            Left !
           </p>
-          <span class="tag-msg">
-            <i class="fa fa-tag" aria-hidden="true"></i> Fastest Delivery
+          <span className="tag-msg">
+            <i className="fa fa-tag" aria-hidden="true"></i> Fastest Delivery
           </span>
-          <span class="tag-msg">
-            <i class="fa fa-tag" aria-hidden="true"></i> Inclusive of All Taxes
+          <span className="tag-msg">
+            <i className="fa fa-tag" aria-hidden="true"></i> Inclusive of All
+            Taxes
           </span>
-          <span class="tag-msg">
-            <i class="fa fa-tag" aria-hidden="true"></i> Cash On Delivery
+          <span className="tag-msg">
+            <i className="fa fa-tag" aria-hidden="true"></i> Cash On Delivery
             Available
           </span>
 

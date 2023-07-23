@@ -134,20 +134,6 @@
   background-color: #fff;
 }
 
-/* .cart-card-button {
-  color: #fff;
-  text-align: center;
-  margin-block-start: 2rem;
-  margin-block-end: 1rem;
-  padding: 0.5rem;
-  width: 100%;
-  border: none;
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 600;
-  background-color: #9a9a9a;
-} */
-
 .cart-card-wishlist:hover {
   background-color: #ffe4e6;
 }

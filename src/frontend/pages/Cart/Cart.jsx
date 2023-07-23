@@ -68,20 +68,20 @@ const Cart = () => {
                     </div>
                     <div className="flex flex-column mt-m flex-col-gap-s">
                       <button
-                        className="cart-card-remove cart-btn"
+                        className="cart-card-remove"
                         onClick={() => removeFromCart(cartItem._id)}
                       >
                         Remove From Cart
                       </button>
                       {findInWishlist(cartItem._id) ? (
                         <Link to="/wishlist">
-                          <button className="cart-card-wishlist cart-btn">
+                          <button className="cart-card-wishlist">
                             Go To Wishlist
                           </button>
                         </Link>
                       ) : (
                         <button
-                          className="cart-card-wishlist cart-btns"
+                          className="cart-card-wishlist"
                           onClick={() => moveToWishlist(cartItem)}
                         >
                           Move to Wishlist

@@ -21,8 +21,6 @@ button:disabled {
   background: var(--lightGrey);
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+input:focus {
+  outline: 1px solid var(--secondary-dark);
 }
