@@ -17,6 +17,10 @@
   display: flex;
 }
 
+button:disabled {
+  background: var(--lightGrey);
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

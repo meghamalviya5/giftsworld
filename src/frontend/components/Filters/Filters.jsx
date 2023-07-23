@@ -66,7 +66,7 @@ const Filters = () => {
                   // defaultChecked={category._id === selectedCategoryId}
                 />
                 <span className="geekmark"></span>
-                {category.displayName}
+                {` ${category.displayName}`}
               </label>
             </section>
           ))}
@@ -90,7 +90,7 @@ const Filters = () => {
                     });
                   }}
                 />
-                {rating} Stars & Up
+                {` ${rating} Stars & Up`}
               </label>
             </section>
           ))}
@@ -112,7 +112,7 @@ const Filters = () => {
                 });
               }}
             />
-            Price-Low to High
+            {` Price-Low to High`}
           </label>
           <label htmlFor="high-to-low">
             <input
@@ -128,7 +128,7 @@ const Filters = () => {
                 });
               }}
             />
-            Price-High to Low
+            {` Price-High to Low`}
           </label>
         </div>
       </div>
