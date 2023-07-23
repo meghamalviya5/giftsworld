@@ -1,12 +1,13 @@
+@import url("../../../styles.css");
+
 .filter-block {
   width: 20rem;
   height: 100%;
-  padding: 1rem 3rem;
+  padding: 2rem 3rem;
 }
 
 .filter-header {
-  display: flex;
-  justify-content: space-between;
+  font-size: large;
 }
 
 .filter-clear {
@@ -16,4 +17,17 @@
 .price-selector {
   display: flex;
   flex-direction: column;
+  row-gap: 1rem;
+}
+
+.filter-category {
+  flex-direction: column;
+  row-gap: 0.5rem;
+}
+
+.filter-category > label {
+}
+
+.filters {
+  accent-color: var(--secondary-color);
 }

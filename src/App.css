@@ -1,31 +1,4 @@
-.App {
-  /* text-align: center; */
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  /* background-color: #e8e4dc; */
-  /* min-height: 10vh; */
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* color: white; */
-}
-
-.App-link {
-  color: #61dafb;
-}
+@import url("./styles.css");
 
 .brand-title {
   font-size: 3rem;
@@ -44,8 +17,12 @@
   display: flex;
 }
 
-.links a {
-  color: #d9d9d9;
-  font-size: 1.2rem;
-  margin: 1rem;
+button:disabled {
+  background: var(--lightGrey);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }

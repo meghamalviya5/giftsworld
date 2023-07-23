@@ -1,0 +1,25 @@
+.container {
+  display: grid;
+  /* min-height: 100vh; */
+  height: max-content;
+  /* grid-gap: 1rem; */
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas:
+    "header header header"
+    "aside main"
+    "aside main"
+    "aside main";
+}
+
+nav {
+  grid-area: header;
+}
+
+.sidebar {
+  grid-area: aside;
+  width: max-content;
+}
+
+main {
+  grid-area: main;
+}

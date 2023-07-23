@@ -7,11 +7,14 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { CartWishlistContext } from "../../contexts/CartWishlistContext";
 
 console.log("..in new address");
 const NewAddress = () => {
   const { userData, setUserData, userAddress, setUserAddress } =
     useContext(AuthContext);
+
+  const { dispatch } = useContext(CartWishlistContext);
 
   const navigate = useNavigate();
 
@@ -20,7 +23,7 @@ const NewAddress = () => {
 
     const form = e.target;
     const formData = new FormData(form);
-    const lastAddressId = userData.address[userData.address.length - 1].id + 1;
+    const lastAddressId = userData.address[userData.address.length - 1]?.id + 1;
     let newAddressInfo = {
       id: lastAddressId + 1,
       name: "",
@@ -57,11 +60,19 @@ const NewAddress = () => {
       phone: "",
     });
     toast.success("Address added successfully!");
-    navigate("/profile");
+    //navigate("/profile");
+    dispatch({ type: "ADDRESS_MODAL_STATUS_UPDATE", payload: false });
   };
 
   const handleCancel = () => {
-    navigate("/profile");
+    setUserAddress({
+      name: "",
+      address: { street: "", city: "", state: "", country: "" },
+      zipCode: "",
+      phone: "",
+    });
+    dispatch({ type: "ADDRESS_MODAL_STATUS_UPDATE", payload: false });
+    // navigate("/profile");
   };
 
   const handleUpdateAddresss = (e) => {
@@ -90,11 +101,13 @@ const NewAddress = () => {
       zipCode: "",
       phone: "",
     });
-    navigate("/profile");
+
+    dispatch({ type: "ADDRESS_MODAL_STATUS_UPDATE", payload: false });
+    //navigate("/profile");
   };
 
   return (
-    <div className="address-form-container displayFlex">
+    <div className="address-form-container displayFlex absolute">
       <form
         className="address-form"
         onSubmit={

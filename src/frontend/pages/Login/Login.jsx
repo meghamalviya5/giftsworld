@@ -16,6 +16,32 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const addressObj = {
+    id: 211,
+    name: "Megha Malviya",
+    address: {
+      street: "3375 Stroman Run",
+      city: "North Brycen",
+      state: "Nevada",
+      country: "India",
+    },
+    zipCode: "00641",
+    phone: "1-650-866-5445",
+  };
+
+  const populateAddress = () => {
+    const testdata = userData.address.filter((data) => data.id === 211);
+    return userData.email === "123" && testdata.length > 0
+      ? setUserData((prevData) => ({
+          ...prevData,
+          address: [...userData.address],
+        }))
+      : setUserData((prevData) => ({
+          ...prevData,
+          address: [...userData.address, addressObj],
+        }));
+  };
+
   const handleLogin = async (status) => {
     try {
       const url = "/api/auth/login";
@@ -39,14 +65,14 @@ const Login = () => {
       const response = await axios.post(url, data);
       localStorage.setItem("token", response.data.encodedToken);
       if (response.status === 200) {
-        setUserData((prevUserData) => ({
+        await setUserData((prevUserData) => ({
           ...prevUserData,
           loginResponse: "Login Successful",
           loggedInUser: response.data.foundUser,
           isLoggedIn: true,
         }));
         console.log(response.data.foundUser, "...found User");
-
+        populateAddress();
         toast.success("Login Successful");
         console.log(location?.state?.from?.pathname);
         if (location?.state === null && location?.pathname === "/login") {

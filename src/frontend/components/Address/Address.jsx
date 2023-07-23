@@ -7,40 +7,46 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import "./Address.css";
+import { CartWishlistContext } from "../../contexts/CartWishlistContext";
+import NewAddress from "../NewAddress/NewAddress";
 
-const addressObj = {
-  id: 211,
-  name: "Megha",
-  address: {
-    street: "3375 Stroman Run",
-    city: "North Brycen",
-    state: "Nevada",
-    country: "India",
-  },
-  zipCode: "00641",
-  phone: "1-650-866-5445",
-};
+// const addressObj = {
+//   id: 211,
+//   name: "Megha",
+//   address: {
+//     street: "3375 Stroman Run",
+//     city: "North Brycen",
+//     state: "Nevada",
+//     country: "India",
+//   },
+//   zipCode: "00641",
+//   phone: "1-650-866-5445",
+// };
 
 const Address = () => {
   const { userData, setUserData, editAddress } = useContext(AuthContext);
+  const {
+    state: { addressModalStatus },
+    dispatch,
+  } = useContext(CartWishlistContext);
 
-  const populateAddress = () => {
-    const testdata = userData.address.filter((data) => data.id === 211);
-    return userData.email === "123" && testdata.length > 0
-      ? setUserData((prevData) => ({
-          ...prevData,
-          address: [...userData.address],
-        }))
-      : setUserData((prevData) => ({
-          ...prevData,
-          address: [...userData.address, addressObj],
-        }));
-  };
+  // const populateAddress = () => {
+  //   const testdata = userData.address.filter((data) => data.id === 211);
+  //   return userData.email === "123" && testdata.length > 0
+  //     ? setUserData((prevData) => ({
+  //         ...prevData,
+  //         address: [...userData.address],
+  //       }))
+  //     : setUserData((prevData) => ({
+  //         ...prevData,
+  //         address: [...userData.address, addressObj],
+  //       }));
+  // };
 
-  useEffect(() => {
-    console.log("in useEffect-------------");
-    populateAddress();
-  }, []);
+  //useEffect(() => {
+  //console.log("in useEffect-------------");
+  // populateAddress();
+  //}, []);
 
   const addAddress = () => {
     setUserData({ ...userData, saveState: "add" });
@@ -61,39 +67,65 @@ const Address = () => {
   return (
     <div>
       {console.log("in address")}
-      <h3>ADDRESS</h3>
+      <h3 className="details-header">My Addresses</h3>
       {userData.address.map((address) => {
         return (
-          <div>
-            <label htmlFor={address?.id} className="address-list-item">
-              <div className="basic-details">
-                <span className="address-details-checkout">
-                  <p>{address.name} </p>
-                  <p>
-                    {address.address.street +
-                      ", " +
-                      address.address.city +
-                      ", " +
-                      address.address.state +
-                      ", " +
-                      address.address.country}
-                  </p>
-                  <p>Zip Code: {address.zipCode}</p>
-                  <p>Phone: {address.phone}</p>
-                </span>
-              </div>
-            </label>
-            <Link to="/newAddress" onClick={() => editAddress(address)}>
-              <button>Edit</button>
-            </Link>
-
-            <button onClick={() => deleteAddress(address)}>Delete</button>
+          <div className="address-container">
+            <p className="paragraph-md">{address.name} </p>
+            <div>
+              <p className="paragraph-sm">
+                {address.address.street +
+                  ", " +
+                  address.address.city +
+                  ", " +
+                  address.address.state +
+                  ", "}
+              </p>
+              <p className="paragraph-sm">Zip Code: {address.zipCode}</p>
+              <p className="paragraph-sm">{address.address.country}</p>
+              <p className="paragraph-sm">Phone: {address.phone}</p>
+              {/* </span> */}
+            </div>
+            <div className="address-btn">
+              <Link
+                // to="/newAddress"
+                onClick={() => {
+                  editAddress(address);
+                  dispatch({
+                    type: "ADDRESS_MODAL_STATUS_UPDATE",
+                    payload: true,
+                  });
+                }}
+              >
+                <button className="btn outlined-default address-edit">
+                  Edit
+                </button>
+              </Link>
+              <button
+                className="btn outlined-danger address-remove"
+                onClick={() => deleteAddress(address)}
+              >
+                Delete
+              </button>
+            </div>
           </div>
         );
       })}
-      <Link to="/newAddress" onClick={addAddress}>
-        <button>Add New Address</button>
+      <Link
+        //to="/newAddress"
+        onClick={() => {
+          addAddress();
+          dispatch({
+            type: "ADDRESS_MODAL_STATUS_UPDATE",
+            payload: true,
+          });
+        }}
+      >
+        <button className="btn default address-add false">
+          + Add New Address
+        </button>
       </Link>
+      {addressModalStatus ? <NewAddress /> : null}
       <ToastContainer />
     </div>
   );
