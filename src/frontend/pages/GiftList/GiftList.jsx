@@ -37,14 +37,14 @@ const GiftList = () => {
       <div>
         <Filters />
       </div>
-      <div className="gifts-show">
-        <div className="gifts-head">
-          <h3>Showing All Products</h3>
-          <span>( Showing {filteredGiftList.length} Products )</span>
-        </div>
-        <div className="gift-list">
-          {filteredGiftList?.length > 0 ? (
-            filteredGiftList?.map((gift) => (
+      {filteredGiftList?.length > 0 ? (
+        <div className="gifts-show">
+          <div className="gifts-head">
+            <h3>Showing All Products</h3>
+            <span>( Showing {filteredGiftList.length} Products )</span>
+          </div>
+          <div className="gift-list">
+            {filteredGiftList?.map((gift) => (
               <div key={gift._id} className="gift-list-item">
                 <div className="flex flex-column">
                   <div className="card-header">
@@ -70,12 +70,12 @@ const GiftList = () => {
                 </div>
                 <CartButton gift={gift} />
               </div>
-            ))
-          ) : (
-            <div className="fw-bold txt-m pt-xl pl-s">Product Not Found!!</div>
-          )}
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="fw-bold txt-m pt-xl pl-xl">Product Not Found!!</div>
+      )}
       <ToastContainer />
     </div>
   );
