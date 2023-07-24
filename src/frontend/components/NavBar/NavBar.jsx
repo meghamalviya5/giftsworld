@@ -5,7 +5,6 @@ import {
   faHeart,
   faCartShopping,
   faUser,
-  faCompass,
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./NavBar.css";

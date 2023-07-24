@@ -2,7 +2,7 @@
 
 .filter-block {
   width: 20rem;
-  height: 100%;
+  height: calc(100vh - 100px);
   padding: 2rem 3rem;
   border-right: 1px solid black;
 }
@@ -24,9 +24,6 @@
 .filter-category {
   flex-direction: column;
   row-gap: 0.5rem;
-}
-
-.filter-category > label {
 }
 
 .filters {
