@@ -46,7 +46,6 @@ const Filters = () => {
             }}
           />
         </div>
-        {/* </div> */}
 
         <div className="flex filter-category">
           <label className="fw-bold">Category</label>
