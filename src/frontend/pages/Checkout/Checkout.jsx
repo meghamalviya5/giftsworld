@@ -79,11 +79,11 @@ const Checkout = () => {
 
             <div className="cart-price-flex">
               <p>Price ({numberOfCartItems} item)</p>
-              <p>₹{totalPrice}</p>
+              <p>₹ {totalPrice}</p>
             </div>
             <div className="cart-price-flex">
               <p>Discount</p>
-              <p>- ₹{totalDiscount}</p>
+              <p>-₹ {totalDiscount}</p>
             </div>
             <div className="cart-price-flex">
               <p>Delivery Charges</p>
@@ -92,7 +92,7 @@ const Checkout = () => {
 
             <div className="cart-price-flex">
               <h4>TOTAL AMOUNT</h4>
-              <h4>₹{totalPrice - totalDiscount}</h4>
+              <h4>₹ {totalPrice - totalDiscount}</h4>
             </div>
 
             <h4 className="txt-center border-header">DELIVER TO</h4>
