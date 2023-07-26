@@ -36,7 +36,7 @@ const CardBadge = ({ gift }) => {
         <MaterialIcon
           icon="favorite"
           className="red-fav"
-          onClick={() => handleRemoveFromWishlist(gift._id)}
+          onClick={() => handleRemoveFromWishlist(gift)}
         />
       ) : (
         <MaterialIcon
