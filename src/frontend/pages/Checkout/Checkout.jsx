@@ -83,7 +83,7 @@ const Checkout = () => {
             </div>
             <div className="cart-price-flex">
               <p>Discount</p>
-              <p>₹{totalDiscount}</p>
+              <p>- ₹{totalDiscount}</p>
             </div>
             <div className="cart-price-flex">
               <p>Delivery Charges</p>
