@@ -100,13 +100,13 @@ const Cart = () => {
                 <li>
                   <ul>
                     <p>Price ({numberOfCartItems} item)</p>
-                    <p>₹{totalPrice}</p>
+                    <p>₹ {totalPrice}</p>
                   </ul>
                   {/* </div> */}
                   {/* <div className="cart-price-flex"> */}
                   <ul>
                     <p>Discount</p>
-                    <p>- ₹{totalDiscount}</p>
+                    <p>- ₹ {totalDiscount}</p>
                   </ul>
                   {/* </div> */}
                   {/* <div className="cart-price-flex"> */}

@@ -17,7 +17,7 @@ const AddressDetails = ({ address }) => {
                 ", " +
                 address.address.country}
             </p>
-            <p>Zip Code: {address.address.zipCode}</p>
+            <p>Zip Code: {address.zipCode}</p>
             <p>Phone: {address.phone}</p>
           </span>
         </div>

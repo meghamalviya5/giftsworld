@@ -6,7 +6,7 @@ const CardPrice = ({ gift }) => {
       <div className="flex flex-col-gap-xs">
         <div className="fw-bold">
           &#x20B9;
-          {Math.floor(gift.price - (gift.price * gift.discount) / 100)}
+          {gift.price - Math.floor((gift.price * gift.discount) / 100)}
         </div>
         <div className="grey-color">
           <s>{gift.price}</s>

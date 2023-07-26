@@ -2,10 +2,22 @@ import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { CartWishlistContext } from "../../contexts/CartWishlistContext";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const CartButton = ({ gift }) => {
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const { addToCart, findInCart } = useContext(CartWishlistContext);
+
+  const handleAddToCart = (gift) => {
+    if (token) {
+      addToCart(gift);
+    } else {
+      navigate("/login", { state: { from: location } });
+    }
+  };
 
   return (
     <div>
@@ -23,7 +35,7 @@ const CartButton = ({ gift }) => {
       ) : (
         <button
           className="flex flex-col-gap-xs flex-center card-btn"
-          onClick={() => addToCart(gift)}
+          onClick={() => handleAddToCart(gift)}
         >
           <FontAwesomeIcon
             className="fw-icon-cart"

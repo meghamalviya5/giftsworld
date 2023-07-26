@@ -115,7 +115,7 @@ const CartWishlistProvider = ({ children }) => {
         type: "CART_ITEM_QUANTITY_INCREMENT",
         payload: response.data.cart,
       });
-      toast.success("Successfully Increased Item Quantity");
+      toast.success("Item quantity increased successfully!");
     } catch (error) {
       console.log(error);
     }
@@ -187,7 +187,7 @@ const CartWishlistProvider = ({ children }) => {
             type: "CART_ITEM_QUANTITY_DECREMENT",
             payload: response.data.cart,
           });
-          toast.success("Successfully Decreased Item Quantity");
+          toast.success("Item quantity decreased successfully!");
         } catch (error) {
           console.log(error);
         }

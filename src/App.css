@@ -24,3 +24,7 @@ button:disabled {
 input:focus {
   outline: 1px solid var(--secondary-dark);
 }
+
+/* .Toastify__toast-container {
+  margin-top: 2rem;
+} */
