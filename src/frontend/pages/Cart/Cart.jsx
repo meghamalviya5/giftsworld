@@ -106,7 +106,7 @@ const Cart = () => {
                   {/* <div className="cart-price-flex"> */}
                   <ul>
                     <p>Discount</p>
-                    <p>₹{totalDiscount}</p>
+                    <p>- ₹{totalDiscount}</p>
                   </ul>
                   {/* </div> */}
                   {/* <div className="cart-price-flex"> */}

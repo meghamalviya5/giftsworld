@@ -15,6 +15,7 @@ export const CartWishlistContext = createContext();
 const CartWishlistProvider = ({ children }) => {
   const { allGifts } = useContext(GiftContext);
   const [wishlist, setWishlist] = useState([]);
+  //const [totalDiscount, setTotalDiscount] = useState(0);
 
   const initialState = {
     cart: [],
@@ -33,11 +34,12 @@ const CartWishlistProvider = ({ children }) => {
   );
 
   const totalDiscount = state.cart.reduce(
-    (totalDiscount, { price, discount }) =>
-      totalDiscount + Math.floor((price * discount) / 100),
+    (total, { price, discount, qty }) =>
+      total + Math.floor((price * discount) / 100) * qty,
     0
   );
 
+  console.log("totalDiscount = ", totalDiscount);
   const removeWishlistItem = async (productId) => {
     const url = `/api/user/wishlist/${productId}`;
     const response = await axios.delete(url, {

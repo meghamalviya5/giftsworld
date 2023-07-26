@@ -14,7 +14,7 @@ const Search = () => {
       <input
         type="search"
         className="search-input"
-        placeholder="Search"
+        placeholder="Search by product name"
         value={state.filterState.search}
         onChange={(event) =>
           dispatch({ type: "SEARCH_ITEMS1", payload: event })
