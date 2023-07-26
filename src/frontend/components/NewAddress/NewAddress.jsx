@@ -91,7 +91,7 @@ const NewAddress = () => {
       return add;
     });
     setUserData((prevData) => ({ ...prevData, address: updatedAddress }));
-    toast.success("Address Updated successfully!");
+    toast.success("Address updated successfully!");
     setUserAddress({
       name: "",
       address: { street: "", city: "", state: "", country: "" },

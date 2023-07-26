@@ -87,7 +87,7 @@ const AuthProvider = ({ children }) => {
       });
       console.log(response.data);
       localStorage.setItem("token", response.data.encodedToken);
-      toast.success("Signed Up Successfully.");
+      toast.success("Signed up successfully!");
     } catch (error) {
       console.log(error);
       toast.error("Email Already Exists.");

@@ -26,7 +26,7 @@ const NavBar = () => {
     //localStorage.clear();
     localStorage.removeItem("token");
     setUserData((prevData) => ({ ...prevData, isLoggedIn: false }));
-    toast.success("Logged out successfully");
+    toast.success("Logged out successfully!");
   };
 
   return (
