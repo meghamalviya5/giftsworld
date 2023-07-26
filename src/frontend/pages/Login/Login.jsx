@@ -74,7 +74,7 @@ const Login = () => {
         }));
         console.log(response.data.foundUser, "...found User");
         populateAddress();
-        toast.success("Login Successful");
+        toast.success("Logged in successfully");
         console.log(location?.state?.from?.pathname);
         if (location?.state === null && location?.pathname === "/login") {
           navigate("/");

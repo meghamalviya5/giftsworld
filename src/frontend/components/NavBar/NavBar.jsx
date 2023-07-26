@@ -12,6 +12,7 @@ import "../../../styles.css";
 import { CartWishlistContext } from "../../contexts/CartWishlistContext";
 import { AuthContext } from "../../contexts/AuthContext";
 import Search from "../Search/Search";
+import { ToastContainer, toast } from "react-toastify";
 
 const NavBar = () => {
   const { cart, wishlist } = useContext(CartWishlistContext);
@@ -22,8 +23,10 @@ const NavBar = () => {
   const numberOfwishlistItems = wishlist?.length;
 
   const handleLogout = () => {
-    localStorage.clear();
+    //localStorage.clear();
+    localStorage.removeItem("token");
     setUserData((prevData) => ({ ...prevData, isLoggedIn: false }));
+    toast.success("Logged out successfully");
   };
 
   return (
@@ -42,7 +45,7 @@ const NavBar = () => {
       <div className="nav-login">
         <div className="nav-login-item">
           {userData.isLoggedIn ? (
-            <Link to="/login" className="flex">
+            <Link className="flex">
               <button className="btn-log btn-log-out" onClick={handleLogout}>
                 Logout
               </button>
@@ -87,6 +90,7 @@ const NavBar = () => {
           </Link>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
